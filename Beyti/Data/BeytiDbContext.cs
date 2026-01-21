@@ -32,63 +32,124 @@ namespace Beyti.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            // Wallet
-            modelBuilder.Entity<User>()
-                .HasOne(u => u.Wallet)
-                .WithOne(w => w.User)
-                .HasForeignKey<Wallet>(w => w.UserId)
-                .OnDelete(DeleteBehavior.NoAction);
-
-            // Address
+            /* =========================
+               User - Address (One to One)
+               ========================= */
             modelBuilder.Entity<User>()
                 .HasOne(u => u.Address)
                 .WithOne(a => a.User)
                 .HasForeignKey<Address>(a => a.UserId)
-                .OnDelete(DeleteBehavior.NoAction);
+                .OnDelete(DeleteBehavior.Restrict);
 
-            // Orders
+            /* =========================
+               User - Wallet (One to One)
+               ========================= */
+            modelBuilder.Entity<User>()
+                .HasOne(u => u.Wallet)
+                .WithOne(w => w.User)
+                .HasForeignKey<Wallet>(w => w.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            /* =========================
+               User - Profiles (One to One)
+               ========================= */
+
+            modelBuilder.Entity<User>()
+                .HasOne<SupplierProfile>()
+                .WithOne(sp => sp.User)
+                .HasForeignKey<SupplierProfile>(sp => sp.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<User>()
+                .HasOne<ChefProfile>()
+                .WithOne(cp => cp.User)
+                .HasForeignKey<ChefProfile>(cp => cp.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<User>()
+                .HasOne<CustomerProfile>()
+                .WithOne(cp => cp.User)
+                .HasForeignKey<CustomerProfile>(cp => cp.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<User>()
+                .HasOne<DeliveryProfile>()
+                .WithOne(dp => dp.User)
+                .HasForeignKey<DeliveryProfile>(dp => dp.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            /* =========================
+               SupplierProfile - Supplies
+               ========================= */
+            modelBuilder.Entity<Supply>()
+                .HasOne(s => s.SupplierProfile)
+                .WithMany(sp => sp.Supplies)
+                .HasForeignKey(s => s.SupplierProfileId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            /* =========================
+               ChefProfile - Recipes
+               ========================= */
+            modelBuilder.Entity<Recipe>()
+                .HasOne(r => r.ChefProfile)
+                .WithMany(cp => cp.Recipes)
+                .HasForeignKey(r => r.ChefProfileId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            /* =========================
+               Order - User (Customer / Chef)
+               ========================= */
             modelBuilder.Entity<Order>()
                 .HasOne(o => o.Customer)
                 .WithMany()
                 .HasForeignKey(o => o.CustomerId)
-                .OnDelete(DeleteBehavior.NoAction);
+                .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Order>()
                 .HasOne(o => o.Chef)
                 .WithMany()
                 .HasForeignKey(o => o.ChefId)
-                .OnDelete(DeleteBehavior.NoAction);
+                .OnDelete(DeleteBehavior.Restrict);
 
-            // OrderDetails
+            /* =========================
+               Order - OrderDetails
+               ========================= */
             modelBuilder.Entity<OrderDetail>()
                 .HasOne(od => od.Order)
                 .WithMany(o => o.OrderDetails)
-                .HasForeignKey(od => od.OrderId);
+                .HasForeignKey(od => od.OrderId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<OrderDetail>()
                 .HasOne(od => od.Recipe)
                 .WithMany()
                 .HasForeignKey(od => od.RecipeId)
-                .OnDelete(DeleteBehavior.NoAction);
+                .OnDelete(DeleteBehavior.Restrict);
 
-            // Wallet Transactions
+            /* =========================
+               Wallet - Transactions
+               ========================= */
             modelBuilder.Entity<WalletTransaction>()
                 .HasOne(t => t.Wallet)
                 .WithMany(w => w.Transactions)
-                .HasForeignKey(t => t.WalletId);
+                .HasForeignKey(t => t.WalletId)
+                .OnDelete(DeleteBehavior.Cascade);
 
-            // Reviews
+            /* =========================
+               Reviews
+               ========================= */
             modelBuilder.Entity<Review>()
-                .HasOne(r => r.Customer)
-                .WithMany(c => c.Reviews)
-                .HasForeignKey(r => r.FromCustomerId)
-                .OnDelete(DeleteBehavior.NoAction);
+                .HasOne(r => r.CustomerProfile)
+                .WithMany(cp => cp.Reviews)
+                .HasForeignKey(r => r.CustomerProfileId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Review>()
                 .HasOne(r => r.ToUser)
                 .WithMany()
                 .HasForeignKey(r => r.ToUserId)
-                .OnDelete(DeleteBehavior.NoAction);
+                .OnDelete(DeleteBehavior.Restrict);
         }
+
     }
 }

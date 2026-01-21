@@ -6,13 +6,21 @@
     <title>@ViewData["Title"] - Beyti</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/Beyti.styles.css" asp-append-version="true" />
+@*     <link rel="stylesheet" href="~/Beyti.styles.css" asp-append-version="true" />
+ *@    <link rel="stylesheet" href="~/css/theme.css" asp-append-version="true" />
+
+    @* Section for page-specific styles *@
+    @await RenderSectionAsync("Styles", required: false)
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-lg navbar-light bg-white">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Beyti</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                    @* Logo Image - Update the src path to your logo location *@
+                    <img src="~/image/Logo (Beyti).svg" alt="Beyti Logo" style="height: 50px; margin-right: 10px;" />
+                    Beyti
+                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -20,27 +28,78 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
+                    </ul>
+                    <ul class="navbar-nav">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <span class="nav-link" style="color: var(--olive-hearth); font-weight: 600;">Hello, @User.Identity.Name! 👋</span>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Profile" asp-action="Index">Profile</a>
+                            </li>
+                            <li class="nav-item">
+                                <form method="post" asp-controller="Auth" asp-action="Logout" class="d-inline">
+                                    <button type="submit" class="btn btn-beyti-secondary btn-sm" style="margin-top: 4px;">Logout</button>
+                                </form>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="btn btn-beyti-secondary btn-sm me-2" asp-controller="Auth" asp-action="Login" style="margin-top: 4px;">Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="btn btn-beyti-primary btn-sm" asp-controller="Auth" asp-action="Register" style="margin-top: 4px;">Sign Up</a>
+                            </li>
+                        }
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
 
-    <footer class="border-top footer text-muted">
+    <main role="main" class="main-content">
+        @RenderBody()
+    </main>
+
+    <footer class="footer">
         <div class="container">
-            &copy; 2026 - Beyti - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <div class="row py-4">
+                <div class="col-md-4 mb-3">
+                    <h5 style="color: #F3831C; font-weight: 800;">Beyti</h5>
+                    <p style="opacity: 0.9;">أكل بيتك احد باب بيتك<br>Homemade. Trusted. Nearby.</p>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h6 style="color: #F3831C; font-weight: 700;">Quick Links</h6>
+                    <ul style="list-style: none; padding: 0;">
+                        <li><a asp-controller="Home" asp-action="Index" style="color: #F6F0D7; text-decoration: none; opacity: 0.9;">Home</a></li>
+                        <li><a asp-controller="Home" asp-action="Privacy" style="color: #F6F0D7; text-decoration: none; opacity: 0.9;">Privacy</a></li>
+                        <li><a href="#" style="color: #F6F0D7; text-decoration: none; opacity: 0.9;">How It Works</a></li>
+                        <li><a href="#" style="color: #F6F0D7; text-decoration: none; opacity: 0.9;">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h6 style="color: #F3831C; font-weight: 700;">Contact Us</h6>
+                    <p style="opacity: 0.9;">
+                        📧 info@beyti.com<br>
+                        📞 +20 123 456 7890<br>
+                        📍 Cairo, Egypt
+                    </p>
+                </div>
+            </div>
+            <hr style="border-color: rgba(246, 240, 215, 0.2);" />
+            <div class="text-center py-3">
+                &copy; 2026 - Beyti - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            </div>
         </div>
     </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

@@ -76,7 +76,8 @@ namespace Beyti.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
                     b.ToTable("ChefProfiles");
                 });
@@ -94,7 +95,8 @@ namespace Beyti.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
                     b.ToTable("CustomerProfiles");
                 });
@@ -120,7 +122,8 @@ namespace Beyti.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
                     b.ToTable("DeliveryProfiles");
                 });
@@ -246,7 +249,7 @@ namespace Beyti.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("FromCustomerId")
+                    b.Property<int>("CustomerProfileId")
                         .HasColumnType("int");
 
                     b.Property<int>("Rating")
@@ -260,7 +263,7 @@ namespace Beyti.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("FromCustomerId");
+                    b.HasIndex("CustomerProfileId");
 
                     b.HasIndex("ToUserId");
 
@@ -288,7 +291,8 @@ namespace Beyti.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
                     b.ToTable("SupplierProfiles");
                 });
@@ -338,6 +342,9 @@ namespace Beyti.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
+                    b.Property<int>("AddressId")
+                        .HasColumnType("int");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
@@ -374,7 +381,6 @@ namespace Beyti.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNumber")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("PhoneNumberConfirmed")
@@ -601,7 +607,7 @@ namespace Beyti.Migrations
                     b.HasOne("Beyti.Models.User", "User")
                         .WithOne("Address")
                         .HasForeignKey("Beyti.Models.Address", "UserId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("User");
@@ -610,9 +616,9 @@ namespace Beyti.Migrations
             modelBuilder.Entity("Beyti.Models.ChefProfile", b =>
                 {
                     b.HasOne("Beyti.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .WithOne()
+                        .HasForeignKey("Beyti.Models.ChefProfile", "UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("User");
@@ -621,9 +627,9 @@ namespace Beyti.Migrations
             modelBuilder.Entity("Beyti.Models.CustomerProfile", b =>
                 {
                     b.HasOne("Beyti.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .WithOne()
+                        .HasForeignKey("Beyti.Models.CustomerProfile", "UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("User");
@@ -632,9 +638,9 @@ namespace Beyti.Migrations
             modelBuilder.Entity("Beyti.Models.DeliveryProfile", b =>
                 {
                     b.HasOne("Beyti.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .WithOne()
+                        .HasForeignKey("Beyti.Models.DeliveryProfile", "UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("User");
@@ -645,13 +651,13 @@ namespace Beyti.Migrations
                     b.HasOne("Beyti.Models.User", "Chef")
                         .WithMany()
                         .HasForeignKey("ChefId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Beyti.Models.User", "Customer")
                         .WithMany()
                         .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Chef");
@@ -670,7 +676,7 @@ namespace Beyti.Migrations
                     b.HasOne("Beyti.Models.Recipe", "Recipe")
                         .WithMany()
                         .HasForeignKey("RecipeId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Order");
@@ -691,19 +697,19 @@ namespace Beyti.Migrations
 
             modelBuilder.Entity("Beyti.Models.Review", b =>
                 {
-                    b.HasOne("Beyti.Models.CustomerProfile", "Customer")
+                    b.HasOne("Beyti.Models.CustomerProfile", "CustomerProfile")
                         .WithMany("Reviews")
-                        .HasForeignKey("FromCustomerId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .HasForeignKey("CustomerProfileId")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Beyti.Models.User", "ToUser")
                         .WithMany()
                         .HasForeignKey("ToUserId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.Navigation("Customer");
+                    b.Navigation("CustomerProfile");
 
                     b.Navigation("ToUser");
                 });
@@ -711,9 +717,9 @@ namespace Beyti.Migrations
             modelBuilder.Entity("Beyti.Models.SupplierProfile", b =>
                 {
                     b.HasOne("Beyti.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .WithOne()
+                        .HasForeignKey("Beyti.Models.SupplierProfile", "UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("User");
@@ -735,7 +741,7 @@ namespace Beyti.Migrations
                     b.HasOne("Beyti.Models.User", "User")
                         .WithOne("Wallet")
                         .HasForeignKey("Beyti.Models.Wallet", "UserId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("User");

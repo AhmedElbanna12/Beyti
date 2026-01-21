@@ -1,5 +1,10 @@
+wwwroot\css\home.css
+wwwroot\css\login.css
+wwwroot\css\register.css
 wwwroot\css\site.css
+wwwroot\css\theme.css
 wwwroot\favicon.ico
+wwwroot\image\Logo (Beyti).svg
 wwwroot\js\site.js
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map

@@ -4,8 +4,8 @@
     {
         public int Id { get; set; }
 
-        public int FromCustomerId { get; set; }
-        public CustomerProfile Customer { get; set; } = null!;
+        public int CustomerProfileId { get; set; }
+        public CustomerProfile CustomerProfile { get; set; } = null!;
 
         public int ToUserId { get; set; }
         public User ToUser { get; set; } = null!;

@@ -1,0 +1,136 @@
+﻿@model Beyti.ViewModel.RegisterVM
+@{
+    ViewData["Title"] = "Register - Beyti";
+}
+
+    <link rel="stylesheet" href="~/css/theme.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/register.css" asp-append-version="true" />
+
+
+<div class="register-container-beyti">
+    <div class="container">
+        <div class="register-card-beyti">
+            <div class="register-header-beyti">
+                <h2>Create Your Account 🚀</h2>
+                <p>Join Beyti and start your culinary journey today</p>
+            </div>
+
+            <form asp-action="Register" method="post">
+
+                <!-- Personal Information -->
+                <div class="form-row-beyti">
+                    <div>
+                        <label asp-for="Name" class="register-form-label">Full Name</label>
+                        <input asp-for="Name" class="register-form-control" placeholder="Ahmed Mohamed" />
+                        <span asp-validation-for="Name" class="validation-error"></span>
+                    </div>
+
+                    <div>
+                        <label asp-for="PhoneNumber" class="register-form-label">Phone Number</label>
+                        <input asp-for="PhoneNumber" class="register-form-control" placeholder="+20 123 456 7890" />
+                        <span asp-validation-for="PhoneNumber" class="validation-error"></span>
+                    </div>
+                </div>
+
+                <div class="form-row-beyti">
+                    <div>
+                        <label asp-for="Email" class="register-form-label">Email Address</label>
+                        <input asp-for="Email" class="register-form-control" placeholder="your@email.com" />
+                        <span asp-validation-for="Email" class="validation-error"></span>
+                    </div>
+
+                    <div>
+                        <label asp-for="Password" class="register-form-label">Password</label>
+                        <input asp-for="Password" type="password" class="register-form-control" placeholder="••••••••" />
+                        <span asp-validation-for="Password" class="validation-error"></span>
+                    </div>
+                </div>
+
+                <!-- Role Selection -->
+                <div class="section-divider-register">
+                    <span>🎭 Choose Your Role</span>
+                </div>
+
+                <div class="role-selector-beyti">
+                    <div class="role-option-beyti">
+                        <input type="radio" asp-for="Role" value="Customer" id="roleCustomer" />
+                        <label for="roleCustomer" class="role-label-beyti">
+                            <span class="role-icon-beyti">🛒</span>
+                            <span class="role-name-beyti">Customer</span>
+                        </label>
+                    </div>
+
+                    <div class="role-option-beyti">
+                        <input type="radio" asp-for="Role" value="Chef" id="roleChef" />
+                        <label for="roleChef" class="role-label-beyti">
+                            <span class="role-icon-beyti">👨‍🍳</span>
+                            <span class="role-name-beyti">Chef</span>
+                        </label>
+                    </div>
+
+                    <div class="role-option-beyti">
+                        <input type="radio" asp-for="Role" value="Supplier" id="roleSupplier" />
+                        <label for="roleSupplier" class="role-label-beyti">
+                            <span class="role-icon-beyti">📦</span>
+                            <span class="role-name-beyti">Supplier</span>
+                        </label>
+                    </div>
+
+                    <div class="role-option-beyti">
+                        <input type="radio" asp-for="Role" value="Delivery" id="roleDelivery" />
+                        <label for="roleDelivery" class="role-label-beyti">
+                            <span class="role-icon-beyti">🚚</span>
+                            <span class="role-name-beyti">Delivery</span>
+                        </label>
+                    </div>
+                </div>
+                <span asp-validation-for="Role" class="validation-error d-block text-center mb-3"></span>
+
+                <!-- Address Information -->
+                <div class="section-divider-register">
+                    <span>📍 Address Details</span>
+                </div>
+
+                <div class="form-row-beyti">
+                    <div>
+                        <label asp-for="City" class="register-form-label">City</label>
+                        <input asp-for="City" class="register-form-control" placeholder="Cairo" />
+                        <span asp-validation-for="City" class="validation-error"></span>
+                    </div>
+
+                    <div>
+                        <label asp-for="Street" class="register-form-label">Street</label>
+                        <input asp-for="Street" class="register-form-control" placeholder="Tahrir Street" />
+                        <span asp-validation-for="Street" class="validation-error"></span>
+                    </div>
+                </div>
+
+                <div class="form-row-beyti">
+                    <div>
+                        <label asp-for="BuildingNo" class="register-form-label">Building Number</label>
+                        <input asp-for="BuildingNo" class="register-form-control" placeholder="123" />
+                        <span asp-validation-for="BuildingNo" class="validation-error"></span>
+                    </div>
+
+                    <div>
+                        <label asp-for="Floor" class="register-form-label">Floor</label>
+                        <input asp-for="Floor" class="register-form-control" placeholder="5" />
+                        <span asp-validation-for="Floor" class="validation-error"></span>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-register-beyti">Create Account</button>
+
+                <div class="login-link-beyti">
+                    Already have an account? <a asp-action="Login" asp-controller="Auth">Sign in here</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -6,14 +6,21 @@ namespace Beyti.Models
 {
     public class User : IdentityUser<int>
     {
-        public int Id { get; set; }
-
         public string Name { get; set; } = null!;
         public string? ProfilePicture { get; set; }
-        public string PhoneNumber { get; set; } = null!;
         public bool IsActive { get; set; }
+
         public Address Address { get; set; } = null!;
 
         public Wallet Wallet { get; set; } = null!;
     }
+
+    public enum UserRole
+    {
+        Customer,
+        Chef,
+        Supplier,
+        Delivery
+    }
+
 }

@@ -150,3 +150,7 @@ E:\projects\Backend\Beyti\Beyti\Beyti\obj\Debug\net8.0\refint\Beyti.dll
 E:\projects\Backend\Beyti\Beyti\Beyti\obj\Debug\net8.0\Beyti.pdb
 E:\projects\Backend\Beyti\Beyti\Beyti\obj\Debug\net8.0\Beyti.genruntimeconfig.cache
 E:\projects\Backend\Beyti\Beyti\Beyti\obj\Debug\net8.0\ref\Beyti.dll
+E:\projects\Backend\Beyti\Beyti\Beyti\obj\Debug\net8.0\Beyti.MvcApplicationPartsAssemblyInfo.cs
+E:\projects\Backend\Beyti\Beyti\Beyti\bin\Debug\net8.0\libman.json
+E:\projects\Backend\Beyti\Beyti\Beyti\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.UI.dll
+E:\projects\Backend\Beyti\Beyti\Beyti\bin\Debug\net8.0\Microsoft.Extensions.FileProviders.Embedded.dll

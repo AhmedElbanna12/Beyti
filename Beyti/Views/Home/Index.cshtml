@@ -1,8 +1,139 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Welcome to Beyti";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+@section Styles {
+    <link rel="stylesheet" href="~/css/theme.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/home.css" asp-append-version="true" />
+}
+
+<div class="container">
+    <!-- Hero Section -->
+    <div class="hero-beyti">
+        <div class="row align-items-center hero-content">
+            <div class="col-lg-6 text-center text-lg-start mb-4 mb-lg-0">
+                <h1 class="hero-title animate-fade-in">Fresh Homemade Food, Delivered Fast</h1>
+                <p class="hero-subtitle">أكل بيتك احد باب بيتك</p>
+                <p class="hero-description">Homemade meals you trust, cooked with care and delivered fast. Connect with talented chefs in your neighborhood.</p>
+
+                <div class="hero-buttons">
+                    <a asp-controller="Auth" asp-action="Register" class="btn btn-hero-primary">
+                        Order Now
+                    </a>
+                    <a asp-controller="Auth" asp-action="Register" class="btn btn-hero-secondary">
+                        Become a Home Chef
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="hero-image-container">
+                    <div class="hero-image-grid">
+                        <div class="hero-image-item">
+                            <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400" alt="Delicious Food 1">
+                        </div>
+                        <div class="hero-image-item">
+                            <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400" alt="Delicious Food 2">
+                        </div>
+                        <div class="hero-image-item">
+                            <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=400" alt="Delicious Food 3">
+                        </div>
+                        <div class="hero-image-item">
+                            <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400" alt="Delicious Food 4">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <div class="features-beyti">
+        <div class="section-title-beyti">
+            <h2>Why Choose Beyti?</h2>
+            <p>Join our growing community and experience the difference</p>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-lg-3 col-md-6">
+                <div class="feature-card-beyti animate-fade-in">
+                    <div class="feature-icon-beyti">🛒</div>
+                    <h3 class="feature-title-beyti">For Customers</h3>
+                    <p class="feature-description-beyti">Order fresh, homemade meals from talented chefs and get them delivered to your doorstep</p>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="feature-card-beyti animate-fade-in" style="animation-delay: 0.1s;">
+                    <div class="feature-icon-beyti">👨‍🍳</div>
+                    <h3 class="feature-title-beyti">For Chefs</h3>
+                    <p class="feature-description-beyti">Showcase your culinary skills and grow your home cooking business with our platform</p>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="feature-card-beyti animate-fade-in" style="animation-delay: 0.2s;">
+                    <div class="feature-icon-beyti">📦</div>
+                    <h3 class="feature-title-beyti">For Suppliers</h3>
+                    <p class="feature-description-beyti">Connect with chefs and provide quality ingredients for amazing homemade dishes</p>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="feature-card-beyti animate-fade-in" style="animation-delay: 0.3s;">
+                    <div class="feature-icon-beyti">🚚</div>
+                    <h3 class="feature-title-beyti">For Delivery</h3>
+                    <p class="feature-description-beyti">Earn money by delivering delicious homemade meals to happy customers</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- How It Works Section -->
+    <div class="how-it-works-beyti">
+        <div class="section-title-beyti mb-5">
+            <h2 class="text-white">How It Works</h2>
+            <p class="text-white" style="opacity: 0.9;">Get started in just 3 simple steps</p>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title">Choose Your Meal</h3>
+                    <p class="step-description">Browse delicious homemade meals from talented home chefs in your area</p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title">Place Your Order</h3>
+                    <p class="step-description">Order with a few clicks and track your meal preparation in real-time</p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title">Enjoy Fresh Food</h3>
+                    <p class="step-description">Get your hot, fresh homemade meal delivered right to your door</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="cta-section-beyti">
+        <h2>Ready to Get Started?</h2>
+        <p>Join thousands of food lovers enjoying homemade meals every day</p>
+        <div class="d-flex gap-3 justify-content-center flex-wrap">
+            <a  asp-controller="Auth" asp-action="Register" class="btn btn-hero-primary">
+                Sign Up Now
+            </a>
+            <a asp-controller="Auth" asp-action="Login" class="btn btn-hero-secondary">
+                Login
+            </a>
+        </div>
+    </div>
 </div>
