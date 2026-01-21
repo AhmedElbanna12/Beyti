@@ -1,7 +1,7 @@
 ﻿using Beyti.Models;
 using System.ComponentModel.DataAnnotations;
 
-namespace Beyti.ViewModel
+namespace Beyti.ViewModel.Auth
 {
     public class RegisterVM
     {

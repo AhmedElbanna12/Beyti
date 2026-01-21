@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Beyti")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1be6a4c178305230ab95f01bf8da0f66b078f8d5")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ccc99ec7f5c4935c7518e2181716974c796ebbe7")]
 [assembly: System.Reflection.AssemblyProductAttribute("Beyti")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Beyti")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

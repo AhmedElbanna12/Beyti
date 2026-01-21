@@ -1,0 +1,56 @@
+﻿@using Beyti.ViewModel.Profile
+@model ProfileVM
+@{
+    ViewData["Title"] = "Edit Profile";
+}
+
+<div class="container py-5">
+    <h2 class="mb-4">Edit Your Profile</h2>
+
+    <form asp-action="Edit" method="post">
+        <div class="mb-3">
+            <label asp-for="Name" class="form-label">Full Name</label>
+            <input asp-for="Name" class="form-control form-control-beyti" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="PhoneNumber" class="form-label">Phone Number</label>
+            <input asp-for="PhoneNumber" class="form-control form-control-beyti" />
+            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="City" class="form-label">City</label>
+            <input asp-for="City" class="form-control form-control-beyti" />
+            <span asp-validation-for="City" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Street" class="form-label">Street</label>
+            <input asp-for="Street" class="form-control form-control-beyti" />
+            <span asp-validation-for="Street" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="BuildingNo" class="form-label">Building Number</label>
+            <input asp-for="BuildingNo" class="form-control form-control-beyti" />
+            <span asp-validation-for="BuildingNo" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Floor" class="form-label">Floor</label>
+            <input asp-for="Floor" class="form-control form-control-beyti" />
+            <span asp-validation-for="Floor" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-beyti-primary mt-3">Save Changes</button>
+        <a asp-action="Index" class="btn btn-beyti-secondary mt-3 ms-2">Cancel</a>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

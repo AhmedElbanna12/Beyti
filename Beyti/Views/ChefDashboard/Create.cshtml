@@ -1,0 +1,49 @@
+﻿@model Beyti.ViewModel.chief.RecipeVM
+@{
+    ViewData["Title"] = "Add New Recipe";
+}
+
+<h2>Add New Recipe</h2>
+
+<form asp-action="Create" method="post" enctype="multipart/form-data">
+    <div class="mb-3">
+        <label asp-for="Title" class="form-label"></label>
+        <input asp-for="Title" class="form-control" />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Category" class="form-label"></label>
+        <input asp-for="Category" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Description" class="form-label"></label>
+        <textarea asp-for="Description" class="form-control"></textarea>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Ingredients" class="form-label"></label>
+        <textarea asp-for="Ingredients" class="form-control"></textarea>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="PreparationTime" class="form-label"></label>
+        <input asp-for="PreparationTime" class="form-control" type="number" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Price" class="form-label"></label>
+        <input asp-for="Price" class="form-control" type="number" step="0.01" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="ImageFile" class="form-label">Recipe Image</label>
+        <input asp-for="ImageFile" class="form-control" type="file" />
+        <span asp-validation-for="ImageFile" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-success">
+        <i class="bi bi-plus-circle"></i> Add Recipe
+    </button>
+</form>

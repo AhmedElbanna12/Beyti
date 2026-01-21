@@ -7,7 +7,6 @@ namespace Beyti.Models
     public class User : IdentityUser<int>
     {
         public string Name { get; set; } = null!;
-        public string? ProfilePicture { get; set; }
         public bool IsActive { get; set; }
 
         public Address Address { get; set; } = null!;

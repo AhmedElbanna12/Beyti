@@ -1,5 +1,5 @@
 ﻿using Beyti.Models;
-using Beyti.ViewModel;
+using Beyti.ViewModel.Auth;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
