@@ -1,0 +1,28 @@
+﻿@model List<Beyti.ViewModel.Customer.CustomerRecipeVM>
+
+<h2>@ViewBag.ChefName's Menu</h2>
+
+<form asp-action="PlaceOrder" method="post">
+    <input type="hidden" name="ChefId" value="@ViewBag.ChefId" />
+    <div class="row">
+        @for (int i = 0; i < Model.Count; i++)
+        {
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    @if (!string.IsNullOrEmpty(Model[i].ImagePath))
+                    {
+                        <img src="@Model[i].ImagePath" class="card-img-top" />
+                    }
+                    <div class="card-body">
+                        <h5>@Model[i].Title</h5>
+                        <p>@Model[i].Description</p>
+                        <p><strong>@Model[i].Price EGP</strong></p>
+                        <input type="number" name="Items[@i].Quantity" min="0" value="0" class="form-control" />
+                        <input type="hidden" name="Items[@i].RecipeId" value="@Model[i].Id" />
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <button type="submit" class="btn btn-primary mt-3">Place Order</button>
+</form>

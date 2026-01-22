@@ -1,0 +1,40 @@
+﻿@model List<Beyti.Models.Order>
+
+<h2>Available Orders for Delivery</h2>
+
+@if (!Model.Any())
+{
+    <p>No orders waiting for delivery.</p>
+}
+else
+{
+    @foreach (var order in Model)
+    {
+        <div class="card mb-3">
+            <div class="card-header">
+                <strong>Order #@order.Id</strong> - @order.Customer.Name
+            </div>
+            <div class="card-body">
+                <p><strong>Total Price:</strong> @order.TotalPrice EGP</p>
+                <p><strong>Chef:</strong> @order.Chef.Name</p>
+
+                <h6>Customer Info:</h6>
+                <p>Phone: @order.Customer.PhoneNumber</p>
+                <p>Address: @order.Customer.Address.Street, @order.Customer.Address.City</p>
+
+                <h6>Order Details:</h6>
+                <ul>
+                    @foreach (var item in order.OrderDetails)
+                    {
+                        <li>@item.Recipe.Title - Qty: @item.Quantity</li>
+                    }
+                </ul>
+
+                <form asp-action="Accept" method="post">
+                    <input type="hidden" name="id" value="@order.Id" />
+                    <button type="submit" class="btn btn-success">Accept for Delivery</button>
+                </form>
+            </div>
+        </div>
+    }
+}

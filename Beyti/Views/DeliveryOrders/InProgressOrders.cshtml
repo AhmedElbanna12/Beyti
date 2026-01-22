@@ -1,0 +1,50 @@
+﻿@model List<Beyti.Models.Order>
+
+<h2>Orders In Progress</h2>
+
+@if (!Model.Any())
+{
+    <p>No orders in progress.</p>
+}
+else
+{
+    @foreach (var order in Model)
+    {
+        <div class="card mb-3">
+            <div class="card-header">
+                <strong>Order #@order.Id</strong> - @order.Customer.Name
+            </div>
+            <div class="card-body">
+                <p><strong>Status:</strong> @order.Status</p>
+                <p><strong>Total:</strong> @order.TotalPrice EGP</p>
+
+                <h6>Customer Info:</h6>
+                <p>Phone: @order.Customer.PhoneNumber</p>
+                <p>Address: @order.Customer.Address.Street, @order.Customer.Address.City</p>
+
+                <h6>Order Details:</h6>
+                <ul>
+                    @foreach (var item in order.OrderDetails)
+                    {
+                        <li>@item.Recipe.Title - Qty: @item.Quantity</li>
+                    }
+                </ul>
+
+                @if (order.Status == Beyti.Models.OrderStatus.AcceptedByDelivery)
+                {
+                    <form asp-action="StartDelivery" method="post">
+                        <input type="hidden" name="id" value="@order.Id" />
+                        <button type="submit" class="btn btn-primary">Start Delivery</button>
+                    </form>
+                }
+                else if (order.Status == Beyti.Models.OrderStatus.OnTheWay)
+                {
+                    <form asp-action="Delivered" method="post">
+                        <input type="hidden" name="id" value="@order.Id" />
+                        <button type="submit" class="btn btn-success">Mark as Delivered</button>
+                    </form>
+                }
+            </div>
+        </div>
+    }
+}

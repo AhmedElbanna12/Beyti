@@ -1,0 +1,27 @@
+﻿@model List<Beyti.Models.ChefProfile>
+
+@{
+    ViewData["Title"] = "Customer Dashboard";
+}
+
+<h2 class="mb-4">Customer Dashboard</h2>
+
+<div class="row">
+    @foreach (var chefProfile in Model)
+    {
+        <div class="col-md-6 mb-3">
+            <div class="card shadow-sm">
+                <div class="card-body text-center">
+                    <h5>@chefProfile.User.Name</h5>
+                    <p>Order delicious homemade food</p>
+                    <a asp-controller="CustomerOrders"
+                       asp-action="ChefMenu"
+                       asp-route-chefId="@chefProfile.UserId"
+                       class="btn btn-primary">
+                        View Menu / Order
+                    </a>
+                </div>
+            </div>
+        </div>
+    }
+</div>

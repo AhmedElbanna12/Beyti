@@ -136,10 +136,19 @@ namespace Beyti.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<DateTime?>("AssignedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("ChefId")
                         .HasColumnType("int");
 
                     b.Property<int>("CustomerId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal?>("DeliveryFee")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int?>("DeliveryId")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("DeliveryTime")
@@ -148,9 +157,8 @@ namespace Beyti.Migrations
                     b.Property<DateTime>("OrderTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Status")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
 
                     b.Property<decimal>("TotalPrice")
                         .HasColumnType("decimal(18,2)");
@@ -160,6 +168,8 @@ namespace Beyti.Migrations
                     b.HasIndex("ChefId");
 
                     b.HasIndex("CustomerId");
+
+                    b.HasIndex("DeliveryId");
 
                     b.ToTable("Orders");
                 });
@@ -309,10 +319,6 @@ namespace Beyti.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Image")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -340,9 +346,6 @@ namespace Beyti.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("AccessFailedCount")
-                        .HasColumnType("int");
-
-                    b.Property<int>("AddressId")
                         .HasColumnType("int");
 
                     b.Property<string>("ConcurrencyStamp")
@@ -385,9 +388,6 @@ namespace Beyti.Migrations
 
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
-
-                    b.Property<string>("ProfilePicture")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
@@ -660,9 +660,15 @@ namespace Beyti.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.HasOne("Beyti.Models.User", "Delivery")
+                        .WithMany()
+                        .HasForeignKey("DeliveryId");
+
                     b.Navigation("Chef");
 
                     b.Navigation("Customer");
+
+                    b.Navigation("Delivery");
                 });
 
             modelBuilder.Entity("Beyti.Models.OrderDetail", b =>

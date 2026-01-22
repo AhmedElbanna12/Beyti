@@ -1,0 +1,45 @@
+﻿@model Beyti.ViewModel.Delivery.DeliveryDashboardVM
+
+@{
+    ViewData["Title"] = "Delivery Dashboard";
+}
+
+<h2>Delivery Dashboard</h2>
+
+<div class="row mt-4">
+    <div class="col-md-4 mb-3">
+        <div class="card shadow-sm text-center">
+            <div class="card-body">
+                <h5>Waiting Orders</h5>
+                <h2>@Model.WaitingOrdersCount</h2>
+                <a asp-controller="DeliveryOrders" asp-action="AvailableOrders" class="btn btn-primary mt-2">
+                    View Orders
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4 mb-3">
+        <div class="card shadow-sm text-center">
+            <div class="card-body">
+                <h5>In Progress</h5>
+                <h2>@Model.InProgressOrdersCount</h2>
+                <a asp-controller="DeliveryOrders" asp-action="InProgressOrders" class="btn btn-warning mt-2">
+                    View Orders
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4 mb-3">
+        <div class="card shadow-sm text-center">
+            <div class="card-body">
+                <h5>Completed</h5>
+                <h2>@Model.CompletedOrdersCount</h2>
+                <a asp-controller="DeliveryOrders" asp-action="CompletedOrders" class="btn btn-success mt-2">
+                    View Orders
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

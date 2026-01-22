@@ -1,0 +1,38 @@
+﻿@model List<Beyti.Models.Order>
+
+<h2>Completed Deliveries</h2>
+
+@if (!Model.Any())
+{
+    <p>No deliveries completed yet.</p>
+}
+else
+{
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>Customer</th>
+                <th>Phone</th>
+                <th>Address</th>
+                <th>Chef</th>
+                <th>Total</th>
+                <th>Delivery Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var order in Model)
+            {
+                <tr>
+                    <td>@order.Id</td>
+                    <td>@order.Customer.Name</td>
+                    <td>@order.Customer.PhoneNumber</td>
+                    <td>@order.Customer.Address.Street, @order.Customer.Address.City</td>
+                    <td>@order.Chef.Name</td>
+                    <td>@order.TotalPrice EGP</td>
+                    <td>@order.DeliveryTime?.ToLocalTime().ToString("dd MMM yyyy - HH:mm")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

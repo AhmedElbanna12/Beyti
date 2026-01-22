@@ -1,0 +1,16 @@
+﻿@model List<Beyti.Models.User>
+
+<h2>Available Chefs</h2>
+<div class="row">
+    @foreach (var chef in Model)
+    {
+        <div class="col-md-4 mb-3">
+            <div class="card p-3">
+                <h5>@chef.Name</h5>
+                <a asp-controller="CustomerOrders" asp-action="ChefMenu" asp-route-chefId="@chef.Id" class="btn btn-primary mt-2">
+                    View Menu
+                </a>
+            </div>
+        </div>
+    }
+</div>

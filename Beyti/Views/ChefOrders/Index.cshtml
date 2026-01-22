@@ -1,0 +1,67 @@
+﻿@model List<Beyti.ViewModel.chief.OrderVM>
+
+@{
+    ViewData["Title"] = "My Orders";
+}
+
+<h2 class="mb-4">Orders Received</h2>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info">No orders received yet.</div>
+}
+else
+{
+    @foreach (var order in Model)
+    {
+        <div class="card mb-4 shadow-sm">
+            <div class="card-header d-flex justify-content-between">
+                <strong>Order #@order.Id</strong>
+                <span class="badge bg-secondary">@order.Status</span>
+            </div>
+
+            <div class="card-body">
+                <p><strong>Customer:</strong> @order.CustomerName</p>
+                <p><strong>Total Price:</strong> @order.TotalPrice EGP</p>
+                <p>Order Time: @order.OrderTime.ToLocalTime().ToString("dd MMM yyyy - HH:mm")</p>
+
+                <hr />
+                <h6>Order Details</h6>
+                <table class="table table-sm">
+                    <thead>
+                        <tr>
+                            <th>Recipe</th>
+                            <th>Qty</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in order.Details)
+                        {
+                            <tr>
+                                <td>@item.RecipeTitle</td>
+                                <td>@item.Quantity</td>
+                                <td>@item.Price EGP</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            @if (order.Status == Beyti.Models.OrderStatus.Pending)
+            {
+                <div class="card-footer text-end">
+                    <form asp-action="Accept" method="post" class="d-inline">
+                        <input type="hidden" name="id" value="@order.Id" />
+                        <button type="submit" class="btn btn-success btn-sm">Accept</button>
+                    </form>
+
+                    <form asp-action="Reject" method="post" class="d-inline ms-2">
+                        <input type="hidden" name="id" value="@order.Id" />
+                        <button type="submit" class="btn btn-danger btn-sm">Reject</button>
+                    </form>
+                </div>
+            }
+        </div>
+    }
+}

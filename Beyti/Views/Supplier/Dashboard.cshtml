@@ -1,0 +1,38 @@
+﻿@model Beyti.Models.SupplierProfile
+@{
+    ViewData["Title"] = "Supplier Dashboard";
+}
+
+<h2>@Model.CompanyName - Supplies</h2>
+
+<a asp-action="CreateSupply" class="btn btn-primary mb-3">Add New Supply</a>
+
+@if (!Model.Supplies.Any())
+{
+    <p>No supplies added yet.</p>
+}
+else
+{
+    <div class="row">
+        @foreach (var supply in Model.Supplies)
+        {
+            <div class="col-md-4 mb-3">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <h5>@supply.Name</h5>
+                        <p><strong>Category:</strong> @supply.Category</p>
+                        <p><strong>Quality:</strong> @supply.QualityLevel</p>
+
+                        <div class="d-flex justify-content-between mt-2">
+                            <a asp-action="EditSupply" asp-route-id="@supply.Id" class="btn btn-sm btn-outline-primary">Edit</a>
+
+                            <form asp-action="DeleteSupply" asp-route-id="@supply.Id" method="post" onsubmit="return confirm('Are you sure?');">
+                                <button class="btn btn-sm btn-outline-danger">Delete</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}

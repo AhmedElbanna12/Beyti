@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace Beyti.Controllers
+namespace Beyti.Controllers.Chef
 {
 
 
@@ -91,7 +91,6 @@ namespace Beyti.Controllers
                     SupplierName = s.SupplierProfile.CompanyName,
                     Category = s.Category,
                     QualityLevel = s.QualityLevel,
-                    Image = s.Image
                 }).ToListAsync();
 
             // Wallet Section
