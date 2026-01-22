@@ -1,0 +1,18 @@
+﻿h2 {
+    margin-bottom: 20px;
+    color: #3A4624;
+}
+
+.card {
+    border-radius: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+    }
+
+.table th, .table td {
+    vertical-align: middle !important;
+}

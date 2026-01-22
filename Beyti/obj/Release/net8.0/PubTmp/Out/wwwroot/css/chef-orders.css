@@ -1,0 +1,294 @@
+﻿/* Chef Orders Page Styles */
+
+.orders-header {
+    background: linear-gradient(135deg, #ffc107 0%, #e0a800 100%);
+    color: #323232;
+    padding: 40px;
+    border-radius: 20px;
+    margin-bottom: 30px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(255, 193, 7, 0.3);
+}
+
+    .orders-header h2 {
+        font-size: 2.5rem;
+        font-weight: 900;
+        margin: 0;
+    }
+
+    .orders-header p {
+        font-size: 1.1rem;
+        margin-top: 10px;
+        opacity: 0.9;
+    }
+
+.orders-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.order-card-beyti {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    margin-bottom: 30px;
+    border: 2px solid #f0ebe0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+    .order-card-beyti:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(255, 193, 7, 0.2);
+        border-color: #ffc107;
+    }
+
+.order-card-header-beyti {
+    background: linear-gradient(135deg, #3A4624 0%, #323232 100%);
+    color: white;
+    padding: 20px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.order-number {
+    font-size: 1.3rem;
+    font-weight: 900;
+}
+
+.order-status-badge {
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}
+
+    .order-status-badge.pending {
+        background: linear-gradient(135deg, #ffc107 0%, #e0a800 100%);
+        color: #323232;
+    }
+
+    .order-status-badge.accepted {
+        background: linear-gradient(135deg, #28a745 0%, #218838 100%);
+        color: white;
+    }
+
+    .order-status-badge.completed {
+        background: linear-gradient(135deg, #17a2b8 0%, #138496 100%);
+        color: white;
+    }
+
+    .order-status-badge.rejected {
+        background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+        color: white;
+    }
+
+    .order-status-badge.cancelled {
+        background: linear-gradient(135deg, #6c757d 0%, #5a6268 100%);
+        color: white;
+    }
+
+.order-card-body-beyti {
+    padding: 25px;
+}
+
+.order-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.order-info-item {
+    background: #fafaf8;
+    padding: 15px;
+    border-radius: 12px;
+    border: 2px solid #f0ebe0;
+}
+
+.order-info-label {
+    font-size: 0.85rem;
+    color: #666;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}
+
+.order-info-value {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #3A4624;
+}
+
+    .order-info-value.price {
+        color: #F3831C;
+    }
+
+.order-divider {
+    border: none;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #e0dcc8, transparent);
+    margin: 25px 0;
+}
+
+.order-details-header {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #3A4624;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.order-details-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 2px solid #f0ebe0;
+}
+
+    .order-details-table thead {
+        background: linear-gradient(135deg, #3A4624 0%, #323232 100%);
+        color: white;
+    }
+
+    .order-details-table th {
+        padding: 15px;
+        font-weight: 700;
+        text-align: left;
+    }
+
+    .order-details-table tbody tr {
+        border-bottom: 1px solid #f0ebe0;
+        transition: background 0.2s ease;
+    }
+
+        .order-details-table tbody tr:hover {
+            background: #fafaf8;
+        }
+
+        .order-details-table tbody tr:last-child {
+            border-bottom: none;
+        }
+
+    .order-details-table td {
+        padding: 15px;
+        color: #333;
+    }
+
+.order-card-footer-beyti {
+    background: #fafaf8;
+    padding: 20px 25px;
+    border-top: 2px solid #e0dcc8;
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.btn-order-accept {
+    background: linear-gradient(135deg, #28a745 0%, #218838 100%);
+    border: none;
+    color: white;
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+    cursor: pointer;
+}
+
+    .btn-order-accept:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(40, 167, 69, 0.5);
+    }
+
+.btn-order-reject {
+    background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+    border: none;
+    color: white;
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3);
+    cursor: pointer;
+}
+
+    .btn-order-reject:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(220, 53, 69, 0.5);
+    }
+
+.no-orders-card {
+    background: white;
+    border-radius: 20px;
+    padding: 60px 40px;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    border: 2px solid #f0ebe0;
+}
+
+.no-orders-icon {
+    font-size: 5rem;
+    margin-bottom: 20px;
+    opacity: 0.3;
+    color: #ffc107;
+}
+
+.no-orders-title {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #3A4624;
+    margin-bottom: 10px;
+}
+
+.no-orders-text {
+    color: #666;
+    font-size: 1.1rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .orders-header h2 {
+        font-size: 2rem;
+    }
+
+    .order-card-header-beyti {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .order-info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .order-card-footer-beyti {
+        flex-direction: column;
+    }
+
+    .btn-order-accept,
+    .btn-order-reject {
+        width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    .order-details-table {
+        font-size: 0.9rem;
+    }
+
+        .order-details-table th,
+        .order-details-table td {
+            padding: 10px;
+        }
+}

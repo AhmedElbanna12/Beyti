@@ -1,38 +1,56 @@
 ﻿@model List<Beyti.Models.Order>
-
-<h2>Completed Deliveries</h2>
-
-@if (!Model.Any())
-{
-    <p>No deliveries completed yet.</p>
+@{
+    ViewData["Title"] = "Completed Deliveries";
 }
-else
-{
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>Order ID</th>
-                <th>Customer</th>
-                <th>Phone</th>
-                <th>Address</th>
-                <th>Chef</th>
-                <th>Total</th>
-                <th>Delivery Time</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var order in Model)
-            {
-                <tr>
-                    <td>@order.Id</td>
-                    <td>@order.Customer.Name</td>
-                    <td>@order.Customer.PhoneNumber</td>
-                    <td>@order.Customer.Address.Street, @order.Customer.Address.City</td>
-                    <td>@order.Chef.Name</td>
-                    <td>@order.TotalPrice EGP</td>
-                    <td>@order.DeliveryTime?.ToLocalTime().ToString("dd MMM yyyy - HH:mm")</td>
-                </tr>
-            }
-        </tbody>
-    </table>
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/theme.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/delivery-orders.css" asp-append-version="true" />
 }
+
+<div class="container mt-4">
+    <div class="delivery-orders-header">
+        <h2>✅ Completed Deliveries</h2>
+    </div>
+
+    @if (!Model.Any())
+    {
+        <div class="no-orders-delivery">
+            <i class="bi bi-check-circle"></i>
+            <h3>No Completed Deliveries Yet</h3>
+            <p>Your completed deliveries will appear here</p>
+        </div>
+    }
+    else
+    {
+        <div class="completed-table-container">
+            <table class="completed-deliveries-table">
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Customer</th>
+                        <th>Phone</th>
+                        <th>Address</th>
+                        <th>Chef</th>
+                        <th>Total</th>
+                        <th>Delivery Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var order in Model)
+                    {
+                        <tr>
+                            <td style="font-weight: 700; color: #3A4624;">#@order.Id</td>
+                            <td>@order.Customer.Name</td>
+                            <td>@order.Customer.PhoneNumber</td>
+                            <td>@order.Customer.Address.Street, @order.Customer.Address.City</td>
+                            <td>@order.Chef.Name</td>
+                            <td style="font-weight: 700; color: #F3831C;">@order.TotalPrice EGP</td>
+                            <td>@order.DeliveryTime?.ToLocalTime().ToString("dd MMM yyyy - HH:mm")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>

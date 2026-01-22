@@ -1,0 +1,196 @@
+﻿/* Beyti Theme - Global Styles */
+
+:root {
+    /* Beyti Brand Colors */
+    --cream-harvest: #F6F0D7;
+    --warm-pumpkin: #F3831C;
+    --spiced-orange: #EE6822;
+    --olive-hearth: #3A4624;
+    --charcoal-plate: #323232;
+    /* Gradients */
+    --primary-gradient: linear-gradient(135deg, #F3831C 0%, #EE6822 100%);
+    --dark-gradient: linear-gradient(135deg, #3A4624 0%, #323232 100%);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--cream-harvest);
+    color: var(--charcoal-plate);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Main Content Spacing */
+.main-content {
+    flex: 1;
+    padding-bottom: 60px;
+}
+
+/* Navbar Styles */
+.navbar {
+    background-color: white !important;
+    box-shadow: 0 2px 10px rgba(58, 70, 36, 0.1);
+    padding: 15px 0;
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--olive-hearth) !important;
+}
+
+    .navbar-brand img {
+        height: 50px;
+        margin-right: 12px;
+    }
+
+.nav-link {
+    color: var(--charcoal-plate) !important;
+    font-weight: 600;
+    margin: 0 15px;
+    transition: color 0.3s ease;
+}
+
+    .nav-link:hover {
+        color: var(--warm-pumpkin) !important;
+    }
+
+.btn-beyti-primary {
+    background: var(--primary-gradient);
+    border: none;
+    color: white;
+    padding: 12px 30px;
+    font-weight: 700;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(243, 131, 28, 0.3);
+}
+
+    .btn-beyti-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(243, 131, 28, 0.5);
+        color: white;
+    }
+
+.btn-beyti-secondary {
+    background: transparent;
+    border: 2px solid var(--olive-hearth);
+    color: var(--olive-hearth);
+    padding: 12px 30px;
+    font-weight: 700;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+}
+
+    .btn-beyti-secondary:hover {
+        background: var(--olive-hearth);
+        color: white;
+        transform: translateY(-2px);
+    }
+
+/* Form Styles */
+.form-control-beyti {
+    border: 2px solid #e0dcc8;
+    border-radius: 12px;
+    padding: 14px 18px;
+    font-size: 1rem;
+    background-color: white;
+    transition: all 0.3s ease;
+}
+
+    .form-control-beyti:focus {
+        border-color: var(--warm-pumpkin);
+        box-shadow: 0 0 0 0.2rem rgba(243, 131, 28, 0.15);
+        background-color: white;
+    }
+
+.form-label-beyti {
+    font-weight: 600;
+    color: var(--olive-hearth);
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+}
+
+/* Card Styles */
+.beyti-card {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(58, 70, 36, 0.1);
+    padding: 40px;
+    border: 2px solid #f0ebe0;
+}
+
+/* Section Divider */
+.section-divider-beyti {
+    display: flex;
+    align-items: center;
+    margin: 30px 0 20px;
+}
+
+    .section-divider-beyti::before,
+    .section-divider-beyti::after {
+        content: '';
+        flex: 1;
+        border-bottom: 2px solid #e0dcc8;
+    }
+
+    .section-divider-beyti span {
+        padding: 0 15px;
+        color: var(--warm-pumpkin);
+        font-weight: 700;
+        font-size: 1rem;
+    }
+
+/* Footer */
+.footer {
+    background: var(--dark-gradient);
+    color: var(--cream-harvest);
+    padding: 30px 0;
+    margin-top: auto;
+}
+
+    .footer a {
+        color: var(--warm-pumpkin);
+        text-decoration: none;
+    }
+
+        .footer a:hover {
+            color: var(--spiced-orange);
+        }
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .navbar-brand {
+        font-size: 1.4rem;
+    }
+
+        .navbar-brand img {
+            height: 40px;
+        }
+}

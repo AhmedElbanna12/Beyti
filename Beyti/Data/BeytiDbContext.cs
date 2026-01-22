@@ -28,9 +28,25 @@ namespace Beyti.Data
 
         public DbSet<Review> Reviews => Set<Review>();
 
+        public DbSet<SupplierChef> SupplierChefs { get; set; }
+
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+
+            modelBuilder.Entity<SupplierChef>()
+                .HasOne(sc => sc.SupplierProfile)
+                .WithMany(s => s.SupplierChefs)
+                .HasForeignKey(sc => sc.SupplierProfileId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<SupplierChef>()
+                .HasOne(sc => sc.ChefProfile)
+                .WithMany(c => c.SupplierChefs)
+                .HasForeignKey(sc => sc.ChefProfileId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             /* =========================
                User - Address (One to One)

@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Beyti.Models.SupplierProfile>
+@{
+    ViewData["Title"] = "Available Suppliers";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/theme.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/chef-suppliers.css" asp-append-version="true" />
+}
+
+<div class="container mt-4">
+    <div class="suppliers-header">
+        <h2>📦 Available Suppliers</h2>
+        <p style="font-size: 1.1rem; opacity: 0.9; margin-top: 10px;">Find quality ingredients for your recipes</p>
+    </div>
+
+    @if (Model?.Any() == true)
+    {
+        <div class="suppliers-table-container">
+            <table class="suppliers-table">
+                <thead>
+                    <tr>
+                        <th>Company Name</th>
+                        <th>Category</th>
+                        <th>Address</th>
+                        <th>Contact</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var supplier in Model)
+                    {
+                        <tr>
+                            <td data-label="Company" class="supplier-company">
+                                🏢 @supplier.CompanyName
+                            </td>
+                            <td data-label="Category">
+                                <span class="supplier-category">@supplier.SupplyCategory</span>
+                            </td>
+                            <td data-label="Address" class="supplier-contact">
+                                <i class="bi bi-geo-alt"></i> @supplier.User.Address
+                            </td>
+                            <td data-label="Phone" class="supplier-contact">
+                                <i class="bi bi-telephone"></i> @supplier.User.PhoneNumber
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    else
+    {
+        <div class="suppliers-table-container">
+            <div class="empty-suppliers">
+                <i class="bi bi-box-seam"></i>
+                <h3>No Suppliers Available</h3>
+                <p>Check back later for new suppliers</p>
+            </div>
+        </div>
+    }
+
+    <a asp-action="Dashboard" class="btn-back">
+        ← Back to Dashboard
+    </a>
+</div>

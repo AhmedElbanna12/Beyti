@@ -1,22 +1,24 @@
 ﻿@model Beyti.ViewModel.Supplier.EditSupplyVM
+@{
+    ViewData["Title"] = "Edit Supply";
+}
+
+<link rel="stylesheet" href="~/css/edit-supply.css" />
 
 <h2>Edit Supply</h2>
 
 <form asp-action="EditSupply" method="post">
     <input type="hidden" asp-for="Id" />
-
     <div class="mb-3">
         <label asp-for="Name" class="form-label"></label>
         <input asp-for="Name" class="form-control" />
         <span asp-validation-for="Name" class="text-danger"></span>
     </div>
-
     <div class="mb-3">
         <label asp-for="Category" class="form-label"></label>
         <input asp-for="Category" class="form-control" />
         <span asp-validation-for="Category" class="text-danger"></span>
     </div>
-
     <div class="mb-3">
         <label asp-for="QualityLevel" class="form-label"></label>
         <input asp-for="QualityLevel" class="form-control" />

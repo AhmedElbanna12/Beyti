@@ -1,40 +1,93 @@
 ﻿@model List<Beyti.Models.Order>
-
-<h2>Available Orders for Delivery</h2>
-
-@if (!Model.Any())
-{
-    <p>No orders waiting for delivery.</p>
+@{
+    ViewData["Title"] = "Available Orders";
 }
-else
-{
-    @foreach (var order in Model)
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/theme.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/delivery-orders.css" asp-append-version="true" />
+}
+
+<div class="container mt-4">
+    <div class="delivery-orders-header">
+        <h2>📦 Available Orders for Delivery</h2>
+    </div>
+
+    @if (!Model.Any())
     {
-        <div class="card mb-3">
-            <div class="card-header">
-                <strong>Order #@order.Id</strong> - @order.Customer.Name
-            </div>
-            <div class="card-body">
-                <p><strong>Total Price:</strong> @order.TotalPrice EGP</p>
-                <p><strong>Chef:</strong> @order.Chef.Name</p>
-
-                <h6>Customer Info:</h6>
-                <p>Phone: @order.Customer.PhoneNumber</p>
-                <p>Address: @order.Customer.Address.Street, @order.Customer.Address.City</p>
-
-                <h6>Order Details:</h6>
-                <ul>
-                    @foreach (var item in order.OrderDetails)
-                    {
-                        <li>@item.Recipe.Title - Qty: @item.Quantity</li>
-                    }
-                </ul>
-
-                <form asp-action="Accept" method="post">
-                    <input type="hidden" name="id" value="@order.Id" />
-                    <button type="submit" class="btn btn-success">Accept for Delivery</button>
-                </form>
-            </div>
+        <div class="no-orders-delivery">
+            <i class="bi bi-inbox"></i>
+            <h3>No Orders Waiting</h3>
+            <p>Check back later for new delivery orders</p>
         </div>
     }
-}
+    else
+    {
+        @foreach (var order in Model)
+        {
+            <div class="delivery-order-card">
+                <div class="delivery-order-header">
+                    <span class="delivery-order-title">🧾 Order #@order.Id</span>
+                    <span style="opacity: 0.9;">Customer: @order.Customer.Name</span>
+                </div>
+
+                <div class="delivery-order-body">
+                    <!-- Price and Chef Info -->
+                    <div class="delivery-info-section">
+                        <div class="delivery-info-grid">
+                            <div class="delivery-info-item">
+                                <strong>💰 Total Price</strong>
+                                <span style="font-size: 1.3rem; font-weight: 800; color: #F3831C;">@order.TotalPrice EGP</span>
+                            </div>
+                            <div class="delivery-info-item">
+                                <strong>👨‍🍳 Chef</strong>
+                                <span style="font-weight: 600;">@order.Chef.Name</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Customer Info -->
+                    <div class="delivery-info-section">
+                        <div class="delivery-info-title">
+                            👤 Customer Information
+                        </div>
+                        <div class="delivery-info-grid">
+                            <div class="delivery-info-item">
+                                <strong>📞 Phone</strong>
+                                @order.Customer.PhoneNumber
+                            </div>
+                            <div class="delivery-info-item">
+                                <strong>📍 Address</strong>
+                                @order.Customer.Address.Street, @order.Customer.Address.City
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Order Details -->
+                    <div class="delivery-info-section">
+                        <div class="delivery-info-title">
+                            🍽️ Order Items
+                        </div>
+                        <div class="delivery-order-items">
+                            <ul>
+                                @foreach (var item in order.OrderDetails)
+                                {
+                                    <li>@item.Recipe.Title - Quantity: @item.Quantity</li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="delivery-order-footer">
+                    <form asp-action="Accept" method="post">
+                        <input type="hidden" name="id" value="@order.Id" />
+                        <button type="submit" class="btn-delivery-action btn-delivery-accept">
+                            ✓ Accept for Delivery
+                        </button>
+                    </form>
+                </div>
+            </div>
+        }
+    }
+</div>

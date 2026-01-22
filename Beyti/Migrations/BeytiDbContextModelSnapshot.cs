@@ -280,6 +280,29 @@ namespace Beyti.Migrations
                     b.ToTable("Reviews");
                 });
 
+            modelBuilder.Entity("Beyti.Models.SupplierChef", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("ChefProfileId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SupplierProfileId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ChefProfileId");
+
+                    b.HasIndex("SupplierProfileId");
+
+                    b.ToTable("SupplierChefs");
+                });
+
             modelBuilder.Entity("Beyti.Models.SupplierProfile", b =>
                 {
                     b.Property<int>("Id")
@@ -720,6 +743,25 @@ namespace Beyti.Migrations
                     b.Navigation("ToUser");
                 });
 
+            modelBuilder.Entity("Beyti.Models.SupplierChef", b =>
+                {
+                    b.HasOne("Beyti.Models.ChefProfile", "ChefProfile")
+                        .WithMany("SupplierChefs")
+                        .HasForeignKey("ChefProfileId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Beyti.Models.SupplierProfile", "SupplierProfile")
+                        .WithMany("SupplierChefs")
+                        .HasForeignKey("SupplierProfileId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("ChefProfile");
+
+                    b.Navigation("SupplierProfile");
+                });
+
             modelBuilder.Entity("Beyti.Models.SupplierProfile", b =>
                 {
                     b.HasOne("Beyti.Models.User", "User")
@@ -818,6 +860,8 @@ namespace Beyti.Migrations
             modelBuilder.Entity("Beyti.Models.ChefProfile", b =>
                 {
                     b.Navigation("Recipes");
+
+                    b.Navigation("SupplierChefs");
                 });
 
             modelBuilder.Entity("Beyti.Models.CustomerProfile", b =>
@@ -832,6 +876,8 @@ namespace Beyti.Migrations
 
             modelBuilder.Entity("Beyti.Models.SupplierProfile", b =>
                 {
+                    b.Navigation("SupplierChefs");
+
                     b.Navigation("Supplies");
                 });
 

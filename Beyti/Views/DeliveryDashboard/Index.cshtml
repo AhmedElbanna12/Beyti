@@ -1,45 +1,50 @@
 ﻿@model Beyti.ViewModel.Delivery.DeliveryDashboardVM
-
 @{
     ViewData["Title"] = "Delivery Dashboard";
 }
 
-<h2>Delivery Dashboard</h2>
+@section Styles {
+    <link rel="stylesheet" href="~/css/theme.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/delivery-dashboard.css" asp-append-version="true" />
+}
 
-<div class="row mt-4">
-    <div class="col-md-4 mb-3">
-        <div class="card shadow-sm text-center">
-            <div class="card-body">
-                <h5>Waiting Orders</h5>
-                <h2>@Model.WaitingOrdersCount</h2>
-                <a asp-controller="DeliveryOrders" asp-action="AvailableOrders" class="btn btn-primary mt-2">
-                    View Orders
-                </a>
-            </div>
-        </div>
+<div class="container mt-4">
+    <!-- Dashboard Header -->
+    <div class="delivery-header">
+        <h2>🚚 Delivery Dashboard</h2>
+        <p style="font-size: 1.1rem; opacity: 0.9; margin-top: 10px;">Track and manage your deliveries</p>
     </div>
 
-    <div class="col-md-4 mb-3">
-        <div class="card shadow-sm text-center">
-            <div class="card-body">
-                <h5>In Progress</h5>
-                <h2>@Model.InProgressOrdersCount</h2>
-                <a asp-controller="DeliveryOrders" asp-action="InProgressOrders" class="btn btn-warning mt-2">
-                    View Orders
-                </a>
-            </div>
+    <!-- Stats Grid -->
+    <div class="delivery-stats-grid">
+        <!-- Waiting Orders -->
+        <div class="delivery-stat-card waiting">
+            <div class="delivery-stat-icon">⏳</div>
+            <div class="delivery-stat-label">Waiting Orders</div>
+            <div class="delivery-stat-number">@Model.WaitingOrdersCount</div>
+            <a asp-controller="DeliveryOrders" asp-action="AvailableOrders" class="btn-stat-action waiting">
+                View Orders
+            </a>
         </div>
-    </div>
 
-    <div class="col-md-4 mb-3">
-        <div class="card shadow-sm text-center">
-            <div class="card-body">
-                <h5>Completed</h5>
-                <h2>@Model.CompletedOrdersCount</h2>
-                <a asp-controller="DeliveryOrders" asp-action="CompletedOrders" class="btn btn-success mt-2">
-                    View Orders
-                </a>
-            </div>
+        <!-- In Progress -->
+        <div class="delivery-stat-card progress">
+            <div class="delivery-stat-icon">🚴</div>
+            <div class="delivery-stat-label">In Progress</div>
+            <div class="delivery-stat-number">@Model.InProgressOrdersCount</div>
+            <a asp-controller="DeliveryOrders" asp-action="InProgressOrders" class="btn-stat-action progress">
+                View Orders
+            </a>
+        </div>
+
+        <!-- Completed -->
+        <div class="delivery-stat-card completed">
+            <div class="delivery-stat-icon">✅</div>
+            <div class="delivery-stat-label">Completed</div>
+            <div class="delivery-stat-number">@Model.CompletedOrdersCount</div>
+            <a asp-controller="DeliveryOrders" asp-action="CompletedOrders" class="btn-stat-action completed">
+                View Orders
+            </a>
         </div>
     </div>
 </div>

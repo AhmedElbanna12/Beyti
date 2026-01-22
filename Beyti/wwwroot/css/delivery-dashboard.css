@@ -1,0 +1,193 @@
+﻿/* Delivery Dashboard Styles */
+
+.delivery-header {
+    background: linear-gradient(135deg, #17a2b8 0%, #138496 100%);
+    color: white;
+    padding: 40px;
+    border-radius: 20px;
+    margin-bottom: 30px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(23, 162, 184, 0.3);
+}
+
+    .delivery-header h2 {
+        font-size: 2.5rem;
+        font-weight: 900;
+        margin: 0;
+    }
+
+
+.delivery-stats-grid {
+    overflow: visible;
+}
+
+.delivery-stat-card {
+    display: flex;
+    flex-direction: column; /* arrange items vertically */
+    justify-content: flex-start; /* start from top */
+    align-items: center; /* center horizontally */
+    text-align: center;
+    background: white;
+    border-radius: 20px;
+    padding: 35px 25px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    border: 3px solid #f0ebe0;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    min-height: 340px;
+    gap: 20px; /* spacing between icon, label, number, button */
+}
+
+/* الزر في الأسفل */
+.btn-stat-action {
+    margin-top: auto; /* يخلي الزر يروح للأسفل مهما كان محتوى الكارت */
+}
+
+
+    .delivery-stat-card:hover {
+        transform: translateY(-6px);
+    }
+
+.delivery-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+/*.delivery-stat-card {
+    background: white;
+    border-radius: 20px;
+    padding: 35px 25px;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    border: 3px solid #f0ebe0;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+*/
+    .delivery-stat-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 5px;
+        transition: height 0.3s ease;
+    }
+
+    .delivery-stat-card.waiting::before {
+        background: linear-gradient(90deg, #F3831C 0%, #EE6822 100%);
+    }
+
+    .delivery-stat-card.progress::before {
+        background: linear-gradient(90deg, #ffc107 0%, #e0a800 100%);
+    }
+
+    .delivery-stat-card.completed::before {
+        background: linear-gradient(90deg, #28a745 0%, #218838 100%);
+    }
+
+    .delivery-stat-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    }
+
+        .delivery-stat-card:hover::before {
+            height: 100%;
+            opacity: 0.05;
+        }
+
+.delivery-stat-icon {
+    font-size: 3rem;
+    margin-bottom: 15px;
+}
+
+.delivery-stat-card.waiting .delivery-stat-icon {
+    color: #F3831C;
+}
+
+.delivery-stat-card.progress .delivery-stat-icon {
+    color: #ffc107;
+}
+
+.delivery-stat-card.completed .delivery-stat-icon {
+    color: #28a745;
+}
+
+.delivery-stat-label {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #666;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.delivery-stat-number {
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: #3A4624;
+    margin-bottom: 20px;
+    line-height: 1;
+}
+
+.btn-stat-action {
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+    .btn-stat-action.waiting {
+        background: linear-gradient(135deg, #F3831C 0%, #EE6822 100%);
+        color: white;
+        box-shadow: 0 4px 15px rgba(243, 131, 28, 0.3);
+    }
+
+        .btn-stat-action.waiting:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(243, 131, 28, 0.5);
+        }
+
+    .btn-stat-action.progress {
+        background: linear-gradient(135deg, #ffc107 0%, #e0a800 100%);
+        color: #323232;
+        box-shadow: 0 4px 15px rgba(255, 193, 7, 0.3);
+    }
+
+        .btn-stat-action.progress:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 193, 7, 0.5);
+        }
+
+    .btn-stat-action.completed {
+        background: linear-gradient(135deg, #28a745 0%, #218838 100%);
+        color: white;
+        box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+    }
+
+        .btn-stat-action.completed:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(40, 167, 69, 0.5);
+        }
+
+/* Responsive */
+@media (max-width: 768px) {
+    .delivery-header h2 {
+        font-size: 2rem;
+    }
+
+    .delivery-stat-number {
+        font-size: 2.5rem;
+    }
+
+    .delivery-stats-grid {
+        grid-template-columns: 1fr;
+    }
+}

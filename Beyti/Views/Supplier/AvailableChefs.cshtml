@@ -1,0 +1,28 @@
+﻿@model IEnumerable<Beyti.Models.ChefProfile>
+@{
+    ViewData["Title"] = "Available Chefs";
+}
+
+<h2>Available Chefs</h2>
+
+<table class="table table-bordered table-striped">
+    <thead class="table-light">
+        <tr>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Phone</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var chef in Model)
+        {
+            <tr>
+                <td>@chef.User.Name</td>
+                <td>@chef.User.Address</td>
+                <td>@chef.User.PhoneNumber</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="Dashboard" class="btn btn-secondary mt-3">Back to Dashboard</a>

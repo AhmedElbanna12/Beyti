@@ -27,14 +27,25 @@ namespace Beyti.Controllers.Supplier
         {
             var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
 
-            var profile = await _context.SupplierProfiles
+            var supplier = await _context.SupplierProfiles
                 .Include(sp => sp.Supplies)
                 .FirstOrDefaultAsync(sp => sp.UserId == userId);
 
-            if (profile == null) return NotFound("Supplier profile not found");
+            if (supplier == null) return NotFound();
 
-            return View(profile);
+            var availableChefs = await _context.ChefProfiles
+                .Include(c => c.User)
+                .ToListAsync();
+
+            var viewModel = new SupplierDashboardViewModel
+            {
+                Supplier = supplier,
+                AvailableChefs = availableChefs
+            };
+
+            return View(viewModel);
         }
+
         // GET
         public IActionResult CreateSupply() => View(new CreateSupplyVM());
 
@@ -134,5 +145,49 @@ namespace Beyti.Controllers.Supplier
 
             return RedirectToAction(nameof(Dashboard));
         }
+
+
+
+        // GET: Available Chefs
+        public async Task<IActionResult> AvailableChefs()
+        {
+            var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+            var profile = await _context.SupplierProfiles
+                .Include(sp => sp.SupplierChefs)
+                .ThenInclude(sc => sc.ChefProfile)
+                .FirstOrDefaultAsync(sp => sp.UserId == userId);
+
+            if (profile == null) return NotFound();
+
+            var allChefs = await _context.ChefProfiles
+                .Include(c => c.User)
+                .ToListAsync();
+
+            return View(allChefs);
+        }
+
+        //// POST: Assign Chef
+        //[HttpPost]
+        //public async Task<IActionResult> AssignChef(int chefId)
+        //{
+        //    var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+        //    var profile = await _context.SupplierProfiles
+        //        .FirstOrDefaultAsync(sp => sp.UserId == userId);
+
+        //    if (profile == null) return NotFound();
+
+        //    if (!_context.SupplierChefs.Any(sc => sc.SupplierProfileId == profile.Id && sc.ChefProfileId == chefId))
+        //    {
+        //        _context.SupplierChefs.Add(new SupplierChef
+        //        {
+        //            SupplierProfileId = profile.Id,
+        //            ChefProfileId = chefId
+        //        });
+        //        await _context.SaveChangesAsync();
+        //    }
+
+        //    return RedirectToAction(nameof(Dashboard));
+        //}
+
     }
 }

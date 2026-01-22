@@ -1,0 +1,182 @@
+﻿/* Chef Suppliers Page Styles */
+
+.suppliers-header {
+    background: linear-gradient(135deg, #17a2b8 0%, #138496 100%);
+    color: white;
+    padding: 40px;
+    border-radius: 20px;
+    margin-bottom: 30px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(23, 162, 184, 0.3);
+}
+
+    .suppliers-header h2 {
+        font-size: 2.5rem;
+        font-weight: 900;
+        margin: 0;
+    }
+
+.suppliers-table-container {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(58, 70, 36, 0.1);
+    padding: 30px;
+    border: 2px solid #f0ebe0;
+    overflow-x: auto;
+}
+
+.suppliers-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+    .suppliers-table thead {
+        background: linear-gradient(135deg, #3A4624 0%, #323232 100%);
+        color: white;
+    }
+
+    .suppliers-table th {
+        padding: 18px 20px;
+        font-weight: 800;
+        text-align: left;
+        font-size: 1rem;
+    }
+
+        .suppliers-table th:first-child {
+            border-radius: 15px 0 0 0;
+        }
+
+        .suppliers-table th:last-child {
+            border-radius: 0 15px 0 0;
+        }
+
+    .suppliers-table tbody tr {
+        border-bottom: 2px solid #f0ebe0;
+        transition: all 0.3s ease;
+    }
+
+        .suppliers-table tbody tr:last-child {
+            border-bottom: none;
+        }
+
+        .suppliers-table tbody tr:hover {
+            background: #fafaf8;
+            transform: scale(1.01);
+        }
+
+    .suppliers-table td {
+        padding: 18px 20px;
+        color: #333;
+    }
+
+.supplier-company {
+    font-weight: 700;
+    color: #3A4624;
+    font-size: 1.05rem;
+}
+
+.supplier-category {
+    display: inline-block;
+    background: linear-gradient(135deg, #F3831C 0%, #EE6822 100%);
+    color: white;
+    padding: 5px 15px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+
+.supplier-contact {
+    color: #666;
+}
+
+    .supplier-contact i {
+        color: #F3831C;
+        margin-right: 5px;
+    }
+
+.btn-back {
+    background: transparent;
+    border: 2px solid #3A4624;
+    color: #3A4624;
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+}
+
+    .btn-back:hover {
+        background: #3A4624;
+        color: white;
+        transform: translateY(-2px);
+    }
+
+.empty-suppliers {
+    text-align: center;
+    padding: 60px 20px;
+    color: #999;
+}
+
+    .empty-suppliers i {
+        font-size: 5rem;
+        margin-bottom: 20px;
+        opacity: 0.3;
+    }
+
+    .empty-suppliers h3 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 10px;
+        color: #666;
+    }
+
+/* Responsive */
+@media (max-width: 768px) {
+    .suppliers-header h2 {
+        font-size: 1.8rem;
+    }
+
+    .suppliers-table-container {
+        padding: 20px 15px;
+    }
+
+    .suppliers-table {
+        font-size: 0.9rem;
+    }
+
+        .suppliers-table th,
+        .suppliers-table td {
+            padding: 12px 10px;
+        }
+}
+
+@media (max-width: 576px) {
+    .suppliers-table thead {
+        display: none;
+    }
+
+    .suppliers-table tbody tr {
+        display: block;
+        margin-bottom: 20px;
+        border: 2px solid #f0ebe0;
+        border-radius: 15px;
+        padding: 15px;
+    }
+
+    .suppliers-table td {
+        display: block;
+        padding: 10px 0;
+        border: none;
+    }
+
+        .suppliers-table td::before {
+            content: attr(data-label);
+            font-weight: 700;
+            color: #3A4624;
+            display: block;
+            margin-bottom: 5px;
+        }
+}

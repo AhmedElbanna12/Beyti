@@ -1,67 +1,116 @@
 ﻿@model List<Beyti.ViewModel.chief.OrderVM>
-
 @{
     ViewData["Title"] = "My Orders";
 }
 
-<h2 class="mb-4">Orders Received</h2>
-
-@if (!Model.Any())
-{
-    <div class="alert alert-info">No orders received yet.</div>
+@section Styles {
+    <link rel="stylesheet" href="~/css/theme.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/chef-orders.css" asp-append-version="true" />
 }
-else
-{
-    @foreach (var order in Model)
-    {
-        <div class="card mb-4 shadow-sm">
-            <div class="card-header d-flex justify-content-between">
-                <strong>Order #@order.Id</strong>
-                <span class="badge bg-secondary">@order.Status</span>
+
+<div class="container mt-4">
+    <!-- Orders Header -->
+    <div class="orders-header">
+        <h2>📋 Orders Received</h2>
+        <p>Manage and track all your customer orders</p>
+    </div>
+
+    <div class="orders-container">
+        @if (!Model.Any())
+        {
+            <!-- No Orders State -->
+            <div class="no-orders-card">
+                <div class="no-orders-icon">🍽️</div>
+                <h3 class="no-orders-title">No Orders Yet</h3>
+                <p class="no-orders-text">Your orders will appear here when customers place them</p>
             </div>
-
-            <div class="card-body">
-                <p><strong>Customer:</strong> @order.CustomerName</p>
-                <p><strong>Total Price:</strong> @order.TotalPrice EGP</p>
-                <p>Order Time: @order.OrderTime.ToLocalTime().ToString("dd MMM yyyy - HH:mm")</p>
-
-                <hr />
-                <h6>Order Details</h6>
-                <table class="table table-sm">
-                    <thead>
-                        <tr>
-                            <th>Recipe</th>
-                            <th>Qty</th>
-                            <th>Price</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in order.Details)
-                        {
-                            <tr>
-                                <td>@item.RecipeTitle</td>
-                                <td>@item.Quantity</td>
-                                <td>@item.Price EGP</td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
-
-            @if (order.Status == Beyti.Models.OrderStatus.Pending)
+        }
+        else
+        {
+            <!-- Orders List -->
+            @foreach (var order in Model)
             {
-                <div class="card-footer text-end">
-                    <form asp-action="Accept" method="post" class="d-inline">
-                        <input type="hidden" name="id" value="@order.Id" />
-                        <button type="submit" class="btn btn-success btn-sm">Accept</button>
-                    </form>
+                <div class="order-card-beyti">
+                    <!-- Order Header -->
+                    <div class="order-card-header-beyti">
+                        <span class="order-number">🧾 Order #@order.Id</span>
+                        <span class="order-status-badge @order.Status.ToString().ToLower()">
+                            @order.Status
+                        </span>
+                    </div>
 
-                    <form asp-action="Reject" method="post" class="d-inline ms-2">
-                        <input type="hidden" name="id" value="@order.Id" />
-                        <button type="submit" class="btn btn-danger btn-sm">Reject</button>
-                    </form>
+                    <!-- Order Body -->
+                    <div class="order-card-body-beyti">
+                        <!-- Order Info Grid -->
+                        <div class="order-info-grid">
+                            <div class="order-info-item">
+                                <div class="order-info-label">👤 Customer</div>
+                                <div class="order-info-value">@order.CustomerName</div>
+                            </div>
+
+                            <div class="order-info-item">
+                                <div class="order-info-label">💰 Total Price</div>
+                                <div class="order-info-value price">@order.TotalPrice EGP</div>
+                            </div>
+
+                            <div class="order-info-item">
+                                <div class="order-info-label">🕐 Order Time</div>
+                                <div class="order-info-value" style="font-size: 1rem;">
+                                    @order.OrderTime.ToLocalTime().ToString("dd MMM yyyy")
+                                    <br />
+                                    <span style="font-size: 0.9rem; color: #666;">@order.OrderTime.ToLocalTime().ToString("HH:mm")</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr class="order-divider" />
+
+                        <!-- Order Details -->
+                        <div class="order-details-header">
+                            🍳 Order Details
+                        </div>
+
+                        <table class="order-details-table">
+                            <thead>
+                                <tr>
+                                    <th>Recipe</th>
+                                    <th>Quantity</th>
+                                    <th>Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in order.Details)
+                                {
+                                    <tr>
+                                        <td style="font-weight: 600;">@item.RecipeTitle</td>
+                                        <td>@item.Quantity</td>
+                                        <td style="font-weight: 700; color: #F3831C;">@item.Price EGP</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Order Footer (Actions) -->
+                    @if (order.Status == Beyti.Models.OrderStatus.Pending)
+                    {
+                        <div class="order-card-footer-beyti">
+                            <form asp-action="Accept" method="post" class="d-inline">
+                                <input type="hidden" name="id" value="@order.Id" />
+                                <button type="submit" class="btn-order-accept">
+                                    ✓ Accept Order
+                                </button>
+                            </form>
+                            <form asp-action="Reject" method="post" class="d-inline" onsubmit="return confirm('Are you sure you want to reject this order?');">
+                                <input type="hidden" name="id" value="@order.Id" />
+                                <button type="submit" class="btn-order-reject">
+                                    ✗ Reject Order
+                                </button>
+                            </form>
+                        </div>
+                    }
                 </div>
             }
-        </div>
-    }
-}
+        }
+    </div>
+</div>

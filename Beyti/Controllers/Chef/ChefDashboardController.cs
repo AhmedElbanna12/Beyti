@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 
 namespace Beyti.Controllers.Chef
 {
@@ -84,14 +85,25 @@ namespace Beyti.Controllers.Chef
             }).ToList();
 
             // Supplies Section
-            var suppliesVM = await _context.Supplies
-                .Include(s => s.SupplierProfile)
-                .Select(s => new SupplyVM
-                {
-                    SupplierName = s.SupplierProfile.CompanyName,
-                    Category = s.Category,
-                    QualityLevel = s.QualityLevel,
-                }).ToListAsync();
+            var suppliesVM = await _context.SupplierChefs
+    .Where(sc => sc.ChefProfileId == chefProfile.Id)
+    .Include(sc => sc.SupplierProfile)
+        .ThenInclude(sp => sp.User)
+    .Select(sc => new SupplyVM
+    {
+        SupplierName = sc.SupplierProfile.CompanyName,
+        Category = sc.SupplierProfile.SupplyCategory,
+        QualityLevel = "Standard",
+        Address = sc.SupplierProfile.User.Address != null
+    ? $"{sc.SupplierProfile.User.Address.City}, {sc.SupplierProfile.User.Address.Street}"
+    : "No address provided",
+        PhoneNumber = sc.SupplierProfile.User.PhoneNumber ?? "N/A",
+
+        Image = "/images/supplier-default.jpg"
+    })
+    .ToListAsync();
+
+
 
             // Wallet Section
             var wallet = await _context.Wallets
@@ -313,6 +325,47 @@ namespace Beyti.Controllers.Chef
 
             return RedirectToAction("Index");
         }
+
+        // GET: Available Suppliers
+        public async Task<IActionResult> AvailableSuppliers()
+        {
+            var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+            var profile = await _context.ChefProfiles
+                .Include(cp => cp.SupplierChefs)
+                .ThenInclude(sc => sc.SupplierProfile)
+                .FirstOrDefaultAsync(cp => cp.UserId == userId);
+
+            if (profile == null) return NotFound();
+
+            var allSuppliers = await _context.SupplierProfiles
+                .Include(sp => sp.User)
+                .ToListAsync();
+
+            return View(allSuppliers);
+        }
+
+        // POST: Assign Supplier
+        //[HttpPost]
+        //public async Task<IActionResult> AssignSupplier(int supplierId)
+        //{
+        //    var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+        //    var profile = await _context.ChefProfiles
+        //        .FirstOrDefaultAsync(cp => cp.UserId == userId);
+
+        //    if (profile == null) return NotFound();
+
+        //    if (!_context.SupplierChefs.Any(sc => sc.SupplierProfileId == supplierId && sc.ChefProfileId == profile.Id))
+        //    {
+        //        _context.SupplierChefs.Add(new SupplierChef
+        //        {
+        //            SupplierProfileId = supplierId,
+        //            ChefProfileId = profile.Id
+        //        });
+        //        await _context.SaveChangesAsync();
+        //    }
+
+        //    return RedirectToAction(nameof(Index));
+        //}
 
     }
 }

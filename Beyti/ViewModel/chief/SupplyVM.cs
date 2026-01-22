@@ -2,9 +2,12 @@
 {
     public class SupplyVM
     {
-        public string SupplierName { get; set; } = "";
-        public string Category { get; set; } = "";
-        public string QualityLevel { get; set; } = "";
-        public string Image { get; set; } = "";
+        public string SupplierName { get; set; } = null!;
+        public string Category { get; set; } = null!;
+        public string QualityLevel { get; set; } = null!;
+        public string Image { get; set; } = null!;
+
+        public string Address { get; set; } = null!;
+        public string PhoneNumber { get; set; } = null!;
     }
 }

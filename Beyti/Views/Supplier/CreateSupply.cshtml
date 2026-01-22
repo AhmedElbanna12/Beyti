@@ -1,4 +1,9 @@
 ﻿@model Beyti.ViewModel.Supplier.CreateSupplyVM
+@{
+    ViewData["Title"] = "Create Supply";
+}
+
+<link rel="stylesheet" href="~/css/create-supply.css" />
 
 <h2>Create Supply</h2>
 
@@ -8,20 +13,17 @@
         <input asp-for="Name" class="form-control" />
         <span asp-validation-for="Name" class="text-danger"></span>
     </div>
-
     <div class="mb-3">
         <label asp-for="Category" class="form-label"></label>
         <input asp-for="Category" class="form-control" />
         <span asp-validation-for="Category" class="text-danger"></span>
     </div>
-
     <div class="mb-3">
         <label asp-for="QualityLevel" class="form-label"></label>
         <input asp-for="QualityLevel" class="form-control" />
         <span asp-validation-for="QualityLevel" class="text-danger"></span>
     </div>
 
-    
     <button type="submit" class="btn btn-primary">Create</button>
     <a asp-action="Dashboard" class="btn btn-secondary ms-2">Cancel</a>
 </form>

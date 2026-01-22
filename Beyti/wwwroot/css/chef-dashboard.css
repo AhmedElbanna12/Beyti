@@ -1,0 +1,302 @@
+﻿/* Chef Dashboard Styles */
+
+.dashboard-header {
+    background: linear-gradient(135deg, #F3831C 0%, #EE6822 100%);
+    color: white;
+    padding: 40px 0;
+    border-radius: 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 10px 30px rgba(243, 131, 28, 0.3);
+}
+
+    .dashboard-header h2 {
+        font-size: 2.5rem;
+        font-weight: 900;
+        margin: 0;
+    }
+
+.dashboard-card {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    margin-bottom: 30px;
+    border: 2px solid #f0ebe0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+    .dashboard-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(58, 70, 36, 0.15);
+    }
+
+.dashboard-card-header {
+    background: linear-gradient(135deg, #3A4624 0%, #323232 100%);
+    color: white;
+    padding: 20px 25px;
+    font-size: 1.3rem;
+    font-weight: 800;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+    .dashboard-card-header.profile {
+        background: linear-gradient(135deg, #F3831C 0%, #EE6822 100%);
+    }
+
+    .dashboard-card-header.recipes {
+        background: linear-gradient(135deg, #28a745 0%, #218838 100%);
+    }
+
+    .dashboard-card-header.orders {
+        background: linear-gradient(135deg, #ffc107 0%, #e0a800 100%);
+        color: #323232;
+    }
+
+    .dashboard-card-header.suppliers {
+        background: linear-gradient(135deg, #17a2b8 0%, #138496 100%);
+    }
+
+    .dashboard-card-header.wallet {
+        background: linear-gradient(135deg, #6c757d 0%, #5a6268 100%);
+    }
+
+.dashboard-card-body {
+    padding: 25px;
+}
+
+.recipe-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    border: 2px solid #f0ebe0;
+    transition: all 0.3s ease;
+    height: 100%;
+}
+
+    .recipe-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(243, 131, 28, 0.2);
+        border-color: #F3831C;
+    }
+
+    .recipe-card img {
+        height: 200px;
+        object-fit: cover;
+        width: 100%;
+    }
+
+.recipe-card-body {
+    padding: 20px;
+}
+
+.recipe-card h5 {
+    color: #3A4624;
+    font-weight: 800;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+.recipe-card p {
+    color: #666;
+    margin-bottom: 8px;
+}
+
+.btn-add-recipe {
+    background: white;
+    color: #28a745;
+    border: 2px solid white;
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-weight: 700;
+    transition: all 0.3s ease;
+}
+
+    .btn-add-recipe:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: scale(1.05);
+    }
+
+.order-card {
+    background: white;
+    border-radius: 15px;
+    border: 2px solid #f0ebe0;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.order-card-header {
+    background: #fafaf8;
+    padding: 15px 20px;
+    border-bottom: 2px solid #e0dcc8;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.order-badge {
+    background: linear-gradient(135deg, #F3831C 0%, #EE6822 100%);
+    color: white;
+    padding: 5px 15px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 0.85rem;
+}
+
+    .order-badge.pending {
+        background: linear-gradient(135deg, #ffc107 0%, #e0a800 100%);
+        color: #323232;
+    }
+
+    .order-badge.completed {
+        background: linear-gradient(135deg, #28a745 0%, #218838 100%);
+    }
+
+    .order-badge.cancelled {
+        background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+    }
+
+.supplier-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    border: 2px solid #f0ebe0;
+    transition: all 0.3s ease;
+    height: 100%;
+}
+
+    .supplier-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(23, 162, 184, 0.2);
+        border-color: #17a2b8;
+    }
+
+    .supplier-card img {
+        height: 180px;
+        object-fit: cover;
+        width: 100%;
+    }
+
+.supplier-card-body {
+    padding: 20px;
+}
+
+.supplier-card h5 {
+    color: #3A4624;
+    font-weight: 800;
+    margin-bottom: 15px;
+}
+
+.wallet-balance {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: #F3831C;
+    margin-bottom: 20px;
+}
+
+.transaction-table {
+    border-radius: 10px;
+    overflow: hidden;
+    border: 2px solid #f0ebe0;
+}
+
+    .transaction-table thead {
+        background: linear-gradient(135deg, #3A4624 0%, #323232 100%);
+        color: white;
+    }
+
+    .transaction-table th {
+        padding: 12px;
+        font-weight: 700;
+    }
+
+    .transaction-table td {
+        padding: 12px;
+        border-bottom: 1px solid #e0dcc8;
+    }
+
+.btn-beyti-edit {
+    background: transparent;
+    border: 2px solid #F3831C;
+    color: #F3831C;
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+    .btn-beyti-edit:hover {
+        background: #F3831C;
+        color: white;
+    }
+
+.btn-beyti-delete {
+    background: transparent;
+    border: 2px solid #dc3545;
+    color: #dc3545;
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+    .btn-beyti-delete:hover {
+        background: #dc3545;
+        color: white;
+    }
+
+.btn-beyti-accept {
+    background: linear-gradient(135deg, #28a745 0%, #218838 100%);
+    border: none;
+    color: white;
+    padding: 10px 25px;
+    border-radius: 50px;
+    font-weight: 700;
+    transition: all 0.3s ease;
+}
+
+    .btn-beyti-accept:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4);
+    }
+
+.btn-beyti-reject {
+    background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+    border: none;
+    color: white;
+    padding: 10px 25px;
+    border-radius: 50px;
+    font-weight: 700;
+    transition: all 0.3s ease;
+}
+
+    .btn-beyti-reject:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(220, 53, 69, 0.4);
+    }
+
+.empty-state {
+    text-align: center;
+    padding: 40px 20px;
+    color: #999;
+}
+
+    .empty-state i {
+        font-size: 4rem;
+        margin-bottom: 20px;
+        opacity: 0.3;
+    }
+
+/* Responsive */
+@media (max-width: 768px) {
+    .dashboard-header h2 {
+        font-size: 1.8rem;
+    }
+
+    .dashboard-card-header {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+}

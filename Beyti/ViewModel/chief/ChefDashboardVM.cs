@@ -12,5 +12,7 @@
 
         public decimal WalletBalance { get; set; }
         public List<WalletTransactionVM> Transactions { get; set; } = new();
+
+
     }
 }

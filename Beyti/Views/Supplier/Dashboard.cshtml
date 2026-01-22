@@ -1,20 +1,23 @@
-﻿@model Beyti.Models.SupplierProfile
+﻿@model Beyti.ViewModel.Supplier.SupplierDashboardViewModel
+
 @{
     ViewData["Title"] = "Supplier Dashboard";
 }
 
-<h2>@Model.CompanyName - Supplies</h2>
+<link rel="stylesheet" href="~/css/supplier-dashboard.css" />
+
+<h2>@Model.Supplier.CompanyName - Supplies</h2>
 
 <a asp-action="CreateSupply" class="btn btn-primary mb-3">Add New Supply</a>
 
-@if (!Model.Supplies.Any())
+@if (!Model.Supplier.Supplies.Any())
 {
     <p>No supplies added yet.</p>
 }
 else
 {
-    <div class="row">
-        @foreach (var supply in Model.Supplies)
+    <div class="row mb-5">
+        @foreach (var supply in Model.Supplier.Supplies)
         {
             <div class="col-md-4 mb-3">
                 <div class="card h-100 shadow-sm">
@@ -22,10 +25,8 @@ else
                         <h5>@supply.Name</h5>
                         <p><strong>Category:</strong> @supply.Category</p>
                         <p><strong>Quality:</strong> @supply.QualityLevel</p>
-
                         <div class="d-flex justify-content-between mt-2">
                             <a asp-action="EditSupply" asp-route-id="@supply.Id" class="btn btn-sm btn-outline-primary">Edit</a>
-
                             <form asp-action="DeleteSupply" asp-route-id="@supply.Id" method="post" onsubmit="return confirm('Are you sure?');">
                                 <button class="btn btn-sm btn-outline-danger">Delete</button>
                             </form>
@@ -35,4 +36,37 @@ else
             </div>
         }
     </div>
+}
+
+<h3>Available Chefs</h3>
+
+@if (!Model.AvailableChefs.Any())
+{
+    <p>No chefs available currently.</p>
+}
+else
+{
+    <table class="table table-bordered table-striped">
+        <thead class="table-light">
+            <tr>
+                <th>Name</th>
+                <th>Specialty</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var chef in Model.AvailableChefs)
+            {
+                <tr>
+                    <td>@chef.User.Name</td>
+                    <td>
+                        <form asp-action="AssignChef" method="post">
+                            <input type="hidden" name="chefId" value="@chef.Id" />
+                            <button type="submit" class="btn btn-sm btn-primary">Assign</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 }

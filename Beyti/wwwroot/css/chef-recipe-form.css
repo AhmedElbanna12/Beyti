@@ -1,0 +1,182 @@
+﻿/* Chef Recipe Form Styles */
+
+.recipe-form-container {
+    max-width: 800px;
+    margin: 40px auto;
+}
+
+.recipe-form-header {
+    background: linear-gradient(135deg, #F3831C 0%, #EE6822 100%);
+    color: white;
+    padding: 30px;
+    border-radius: 20px 20px 0 0;
+    text-align: center;
+}
+
+    .recipe-form-header h2 {
+        font-size: 2.2rem;
+        font-weight: 900;
+        margin: 0;
+    }
+
+.recipe-form-card {
+    background: white;
+    border-radius: 0 0 20px 20px;
+    box-shadow: 0 10px 40px rgba(58, 70, 36, 0.15);
+    padding: 40px;
+    border: 2px solid #f0ebe0;
+    border-top: none;
+}
+
+.recipe-form-group {
+    margin-bottom: 25px;
+}
+
+.recipe-form-label {
+    font-weight: 700;
+    color: #3A4624;
+    margin-bottom: 10px;
+    display: block;
+    font-size: 1rem;
+}
+
+.recipe-form-control {
+    border: 2px solid #e0dcc8;
+    border-radius: 12px;
+    padding: 14px 18px;
+    font-size: 1rem;
+    width: 100%;
+    background-color: #fafaf8;
+    transition: all 0.3s ease;
+}
+
+    .recipe-form-control:focus {
+        border-color: #F3831C;
+        box-shadow: 0 0 0 0.2rem rgba(243, 131, 28, 0.15);
+        background-color: white;
+        outline: none;
+    }
+
+textarea.recipe-form-control {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.recipe-image-preview {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+    .recipe-image-preview img {
+        max-width: 100%;
+        max-height: 300px;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        border: 3px solid #f0ebe0;
+    }
+
+    .recipe-image-preview label {
+        display: block;
+        font-weight: 700;
+        color: #3A4624;
+        margin-bottom: 15px;
+        font-size: 1.1rem;
+    }
+
+.file-input-wrapper {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    width: 100%;
+}
+
+    .file-input-wrapper input[type=file] {
+        position: absolute;
+        left: -9999px;
+    }
+
+.file-input-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: #fafaf8;
+    border: 2px dashed #e0dcc8;
+    border-radius: 12px;
+    padding: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #666;
+}
+
+    .file-input-label:hover {
+        border-color: #F3831C;
+        background: white;
+        color: #F3831C;
+    }
+
+    .file-input-label i {
+        font-size: 2rem;
+    }
+
+.btn-submit-recipe {
+    background: linear-gradient(135deg, #28a745 0%, #218838 100%);
+    border: none;
+    color: white;
+    padding: 16px 40px;
+    font-size: 1.2rem;
+    font-weight: 800;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+    cursor: pointer;
+    width: 100%;
+}
+
+    .btn-submit-recipe:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(40, 167, 69, 0.5);
+    }
+
+    .btn-submit-recipe i {
+        margin-right: 8px;
+    }
+
+.form-validation-error {
+    color: #dc3545;
+    font-size: 0.875rem;
+    margin-top: 5px;
+    display: block;
+}
+
+.form-helper-text {
+    color: #999;
+    font-size: 0.85rem;
+    margin-top: 5px;
+    font-style: italic;
+}
+
+.form-row-split {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .recipe-form-container {
+        margin: 20px 15px;
+    }
+
+    .recipe-form-card {
+        padding: 25px;
+    }
+
+    .recipe-form-header h2 {
+        font-size: 1.8rem;
+    }
+
+    .form-row-split {
+        grid-template-columns: 1fr;
+    }
+}
