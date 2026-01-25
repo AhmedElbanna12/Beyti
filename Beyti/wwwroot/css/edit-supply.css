@@ -1,8 +1,116 @@
-﻿h2 {
-    margin-bottom: 25px;
-    color: #3A4624;
+﻿/* Edit Supply Styles */
+
+.edit-supply-title {
+    color: var(--olive-hearth);
+    font-weight: 800;
+    margin-bottom: 35px;
+    font-size: 2rem;
 }
 
-.btn {
-    min-width: 120px;
+.edit-form-card {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(58, 70, 36, 0.1);
+    padding: 40px;
+    border: 2px solid #f0ebe0;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.edit-form-group {
+    margin-bottom: 25px;
+}
+
+.edit-form-label {
+    font-weight: 600;
+    color: var(--olive-hearth);
+    margin-bottom: 10px;
+    font-size: 1rem;
+    display: block;
+}
+
+.edit-form-control {
+    border: 2px solid #e0dcc8;
+    border-radius: 12px;
+    padding: 14px 18px;
+    font-size: 1rem;
+    background-color: white;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+    .edit-form-control:focus {
+        border-color: var(--warm-pumpkin);
+        box-shadow: 0 0 0 0.2rem rgba(243, 131, 28, 0.15);
+        background-color: white;
+        outline: none;
+    }
+
+.edit-form-validation {
+    color: #dc3545;
+    font-size: 0.875rem;
+    margin-top: 5px;
+    display: block;
+}
+
+.edit-form-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 35px;
+}
+
+.btn-save-changes {
+    background: var(--primary-gradient);
+    border: none;
+    color: white;
+    padding: 14px 35px;
+    font-weight: 700;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(243, 131, 28, 0.3);
+    flex: 1;
+}
+
+    .btn-save-changes:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(243, 131, 28, 0.5);
+        color: white;
+    }
+
+.btn-cancel-edit {
+    background: transparent;
+    border: 2px solid var(--olive-hearth);
+    color: var(--olive-hearth);
+    padding: 14px 35px;
+    font-weight: 700;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    flex: 1;
+}
+
+    .btn-cancel-edit:hover {
+        background: var(--olive-hearth);
+        color: white;
+        transform: translateY(-2px);
+    }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .edit-supply-title {
+        font-size: 1.6rem;
+        margin-bottom: 25px;
+    }
+
+    .edit-form-card {
+        padding: 30px 20px;
+    }
+
+    .edit-form-actions {
+        flex-direction: column;
+    }
+
+    .btn-save-changes,
+    .btn-cancel-edit {
+        width: 100%;
+    }
 }

@@ -1,18 +1,217 @@
-﻿h2 {
-    margin-bottom: 20px;
-    color: #3A4624;
+﻿/* Supplier Dashboard Styles */
+
+.supplier-dashboard-title {
+    color: var(--olive-hearth);
+    font-weight: 800;
+    margin-bottom: 30px;
+    font-size: 2rem;
 }
 
-.card {
-    border-radius: 15px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+.supplier-dashboard-subtitle {
+    color: var(--olive-hearth);
+    font-weight: 700;
+    margin-top: 50px;
+    margin-bottom: 25px;
+    font-size: 1.6rem;
 }
 
-    .card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+.add-supply-btn {
+    background: var(--primary-gradient);
+    border: none;
+    color: white;
+    padding: 12px 30px;
+    font-weight: 700;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(243, 131, 28, 0.3);
+    margin-bottom: 25px;
+    display: inline-block;
+}
+
+    .add-supply-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(243, 131, 28, 0.5);
+        color: white;
     }
 
-.table th, .table td {
-    vertical-align: middle !important;
+.no-supplies-message,
+.no-chefs-message {
+    background: linear-gradient(135deg, #fff8e7 0%, #fff5db 100%);
+    border: 2px solid var(--warm-pumpkin);
+    border-radius: 15px;
+    color: var(--charcoal-plate);
+    padding: 25px;
+    font-size: 1.1rem;
+    text-align: center;
+}
+
+/* Supply Card */
+.supply-card {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(58, 70, 36, 0.1);
+    border: 2px solid #f0ebe0;
+    transition: all 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+    .supply-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 50px rgba(243, 131, 28, 0.2);
+        border-color: var(--warm-pumpkin);
+    }
+
+    .supply-card .card-body {
+        padding: 25px;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .supply-card h5 {
+        color: var(--olive-hearth);
+        font-weight: 700;
+        font-size: 1.4rem;
+        margin-bottom: 15px;
+    }
+
+    .supply-card p {
+        color: var(--charcoal-plate);
+        font-size: 1rem;
+        margin-bottom: 10px;
+    }
+
+        .supply-card p strong {
+            color: var(--olive-hearth);
+            font-weight: 600;
+        }
+
+    .supply-card .card-actions {
+        margin-top: auto;
+        padding-top: 15px;
+        border-top: 2px solid #f0ebe0;
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+    }
+
+    .supply-card .btn-edit {
+        background: transparent;
+        border: 2px solid var(--warm-pumpkin);
+        color: var(--warm-pumpkin);
+        padding: 8px 20px;
+        font-weight: 600;
+        border-radius: 25px;
+        transition: all 0.3s ease;
+        flex: 1;
+    }
+
+        .supply-card .btn-edit:hover {
+            background: var(--warm-pumpkin);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+    .supply-card .btn-delete {
+        background: transparent;
+        border: 2px solid #dc3545;
+        color: #dc3545;
+        padding: 8px 20px;
+        font-weight: 600;
+        border-radius: 25px;
+        transition: all 0.3s ease;
+        flex: 1;
+    }
+
+        .supply-card .btn-delete:hover {
+            background: #dc3545;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+/* Chefs Table */
+.chefs-table {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(58, 70, 36, 0.1);
+    border: 2px solid #f0ebe0;
+}
+
+    .chefs-table thead {
+        background: var(--dark-gradient);
+    }
+
+        .chefs-table thead th {
+            color: var(--cream-harvest);
+            font-weight: 700;
+            padding: 18px;
+            border: none;
+            font-size: 1rem;
+        }
+
+    .chefs-table tbody td {
+        padding: 18px;
+        color: var(--charcoal-plate);
+        border-bottom: 1px solid #f0ebe0;
+        vertical-align: middle;
+    }
+
+    .chefs-table tbody tr:hover {
+        background-color: #fafaf8;
+    }
+
+    .chefs-table tbody tr:last-child td {
+        border-bottom: none;
+    }
+
+.assign-chef-btn {
+    background: var(--primary-gradient);
+    border: none;
+    color: white;
+    padding: 8px 20px;
+    font-weight: 600;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+}
+
+    .assign-chef-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(243, 131, 28, 0.3);
+    }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .supplier-dashboard-title {
+        font-size: 1.6rem;
+        margin-bottom: 20px;
+    }
+
+    .supplier-dashboard-subtitle {
+        font-size: 1.3rem;
+        margin-top: 35px;
+    }
+
+    .supply-card .card-body {
+        padding: 20px;
+    }
+
+    .supply-card h5 {
+        font-size: 1.2rem;
+    }
+
+    .supply-card .card-actions {
+        flex-direction: column;
+    }
+
+    .chefs-table {
+        font-size: 0.9rem;
+    }
+
+        .chefs-table thead th,
+        .chefs-table tbody td {
+            padding: 12px;
+        }
 }

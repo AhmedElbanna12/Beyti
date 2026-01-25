@@ -1,0 +1,64 @@
+﻿/* Available Chefs Styles */
+
+.available-chefs-title {
+    color: var(--olive-hearth);
+    font-weight: 800;
+    margin-bottom: 30px;
+    font-size: 2rem;
+}
+
+.chef-profile-card {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(58, 70, 36, 0.1);
+    border: 2px solid #f0ebe0;
+    padding: 30px;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+    .chef-profile-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 50px rgba(243, 131, 28, 0.2);
+        border-color: var(--warm-pumpkin);
+    }
+
+    .chef-profile-card h5 {
+        color: var(--olive-hearth);
+        font-weight: 700;
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+    }
+
+    .chef-profile-card .btn-primary {
+        background: var(--primary-gradient);
+        border: none;
+        color: white;
+        padding: 12px 30px;
+        font-weight: 700;
+        border-radius: 50px;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(243, 131, 28, 0.3);
+        margin-top: 10px;
+    }
+
+        .chef-profile-card .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(243, 131, 28, 0.5);
+        }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .available-chefs-title {
+        font-size: 1.6rem;
+        margin-bottom: 20px;
+    }
+
+    .chef-profile-card {
+        padding: 25px;
+    }
+
+        .chef-profile-card h5 {
+            font-size: 1.3rem;
+        }
+}

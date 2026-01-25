@@ -3,30 +3,43 @@
     ViewData["Title"] = "Create Supply";
 }
 
-<link rel="stylesheet" href="~/css/create-supply.css" />
+@section Styles {
+    <link rel="stylesheet" href="~/css/theme.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/create-supply.css" asp-append-version="true" />
+}
 
-<h2>Create Supply</h2>
+<div class="main-content">
+    <div class="container py-5">
+        <h2 class="create-supply-title animate-fade-in">Create New Supply</h2>
 
-<form asp-action="CreateSupply" method="post">
-    <div class="mb-3">
-        <label asp-for="Name" class="form-label"></label>
-        <input asp-for="Name" class="form-control" />
-        <span asp-validation-for="Name" class="text-danger"></span>
-    </div>
-    <div class="mb-3">
-        <label asp-for="Category" class="form-label"></label>
-        <input asp-for="Category" class="form-control" />
-        <span asp-validation-for="Category" class="text-danger"></span>
-    </div>
-    <div class="mb-3">
-        <label asp-for="QualityLevel" class="form-label"></label>
-        <input asp-for="QualityLevel" class="form-control" />
-        <span asp-validation-for="QualityLevel" class="text-danger"></span>
-    </div>
+        <div class="supply-form-card animate-fade-in">
+            <form asp-action="CreateSupply" method="post">
+                <div class="supply-form-group">
+                    <label asp-for="Name" class="supply-form-label">Supply Name</label>
+                    <input asp-for="Name" class="supply-form-control" placeholder="Enter supply name" />
+                    <span asp-validation-for="Name" class="supply-form-validation"></span>
+                </div>
 
-    <button type="submit" class="btn btn-primary">Create</button>
-    <a asp-action="Dashboard" class="btn btn-secondary ms-2">Cancel</a>
-</form>
+                <div class="supply-form-group">
+                    <label asp-for="Category" class="supply-form-label">Category</label>
+                    <input asp-for="Category" class="supply-form-control" placeholder="Enter category (e.g., Vegetables, Meat, Dairy)" />
+                    <span asp-validation-for="Category" class="supply-form-validation"></span>
+                </div>
+
+                <div class="supply-form-group">
+                    <label asp-for="QualityLevel" class="supply-form-label">Quality Level</label>
+                    <input asp-for="QualityLevel" class="supply-form-control" placeholder="Enter quality level (e.g., Premium, Standard)" />
+                    <span asp-validation-for="QualityLevel" class="supply-form-validation"></span>
+                </div>
+
+                <div class="supply-form-actions">
+                    <button type="submit" class="btn-create-supply">Create Supply</button>
+                    <a asp-action="Dashboard" class="btn-cancel-supply">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

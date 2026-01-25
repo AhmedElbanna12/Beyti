@@ -1,8 +1,13 @@
+wwwroot\css\available-chefs-supplier.css
+wwwroot\css\available-chefs.css
 wwwroot\css\chef-dashboard.css
+wwwroot\css\chef-menu.css
 wwwroot\css\chef-orders.css
 wwwroot\css\chef-recipe-form.css
 wwwroot\css\chef-suppliers.css
 wwwroot\css\create-supply.css
+wwwroot\css\customer-dashboard.css
+wwwroot\css\customer-orders.css
 wwwroot\css\delivery-dashboard.css
 wwwroot\css\delivery-orders.css
 wwwroot\css\edit-supply.css

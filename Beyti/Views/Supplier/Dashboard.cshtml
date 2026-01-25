@@ -1,72 +1,91 @@
 ﻿@model Beyti.ViewModel.Supplier.SupplierDashboardViewModel
-
 @{
     ViewData["Title"] = "Supplier Dashboard";
 }
 
-<link rel="stylesheet" href="~/css/supplier-dashboard.css" />
-
-<h2>@Model.Supplier.CompanyName - Supplies</h2>
-
-<a asp-action="CreateSupply" class="btn btn-primary mb-3">Add New Supply</a>
-
-@if (!Model.Supplier.Supplies.Any())
-{
-    <p>No supplies added yet.</p>
+@section Styles {
+    <link rel="stylesheet" href="~/css/theme.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/supplier-dashboard.css" asp-append-version="true" />
 }
-else
-{
-    <div class="row mb-5">
-        @foreach (var supply in Model.Supplier.Supplies)
+
+<div class="main-content">
+    <div class="container py-5">
+        <h2 class="supplier-dashboard-title animate-fade-in">@Model.Supplier.CompanyName - Supplies</h2>
+
+        <a asp-action="CreateSupply" class="add-supply-btn">
+            <i class="fas fa-plus-circle me-2"></i>Add New Supply
+        </a>
+
+        @if (!Model.Supplier.Supplies.Any())
         {
-            <div class="col-md-4 mb-3">
-                <div class="card h-100 shadow-sm">
-                    <div class="card-body">
-                        <h5>@supply.Name</h5>
-                        <p><strong>Category:</strong> @supply.Category</p>
-                        <p><strong>Quality:</strong> @supply.QualityLevel</p>
-                        <div class="d-flex justify-content-between mt-2">
-                            <a asp-action="EditSupply" asp-route-id="@supply.Id" class="btn btn-sm btn-outline-primary">Edit</a>
-                            <form asp-action="DeleteSupply" asp-route-id="@supply.Id" method="post" onsubmit="return confirm('Are you sure?');">
-                                <button class="btn btn-sm btn-outline-danger">Delete</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+            <div class="no-supplies-message animate-fade-in">
+                No supplies added yet.
             </div>
         }
+        else
+        {
+            <div class="row mb-5">
+                @foreach (var supply in Model.Supplier.Supplies)
+                {
+                    <div class="col-md-4 mb-4">
+                        <div class="supply-card animate-fade-in">
+                            <div class="card-body">
+                                <h5>@supply.Name</h5>
+                                <p><strong>Category:</strong> @supply.Category</p>
+                                <p><strong>Quality:</strong> @supply.QualityLevel</p>
+                                <div class="card-actions">
+                                    <a asp-action="EditSupply"
+                                       asp-route-id="@supply.Id"
+                                       class="btn-edit">
+                                        Edit
+                                    </a>
+                                    <form asp-action="DeleteSupply"
+                                          asp-route-id="@supply.Id"
+                                          method="post"
+                                          onsubmit="return confirm('Are you sure you want to delete this supply?');"
+                                          style="margin: 0;">
+                                        <button class="btn-delete">Delete</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+
+        <h3 class="supplier-dashboard-subtitle">Available Chefs</h3>
+
+        @if (!Model.AvailableChefs.Any())
+        {
+            <div class="no-chefs-message animate-fade-in">
+                No chefs available currently.
+            </div>
+        }
+        else
+        {
+            <table class="chefs-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var chef in Model.AvailableChefs)
+                    {
+                        <tr>
+                            <td>@chef.User.Name</td>
+                            <td>
+                                <form asp-action="AssignChef" method="post" style="margin: 0;">
+                                    <input type="hidden" name="chefId" value="@chef.Id" />
+                                    <button type="submit" class="assign-chef-btn">Assign</button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
     </div>
-}
-
-<h3>Available Chefs</h3>
-
-@if (!Model.AvailableChefs.Any())
-{
-    <p>No chefs available currently.</p>
-}
-else
-{
-    <table class="table table-bordered table-striped">
-        <thead class="table-light">
-            <tr>
-                <th>Name</th>
-                <th>Specialty</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var chef in Model.AvailableChefs)
-            {
-                <tr>
-                    <td>@chef.User.Name</td>
-                    <td>
-                        <form asp-action="AssignChef" method="post">
-                            <input type="hidden" name="chefId" value="@chef.Id" />
-                            <button type="submit" class="btn btn-sm btn-primary">Assign</button>
-                        </form>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-}
+</div>

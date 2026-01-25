@@ -1,52 +1,66 @@
 ﻿@model List<Beyti.ViewModel.Customer.CustomerOrderVM>
-
-<h2>My Orders</h2>
-
-@if (!Model.Any())
-{
-    <div class="alert alert-info">You have no orders yet.</div>
+@{
+    ViewData["Title"] = "My Orders";
 }
-else
-{
-    @foreach (var order in Model)
-    {
-        <div class="card mb-3">
-            <div class="card-header d-flex justify-content-between">
-                <span>Order #@order.Id - @order.ChefName</span>
-                <span class="badge bg-secondary">@order.Status</span>
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/theme.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/customer-orders.css" asp-append-version="true" />
+}
+
+<div class="main-content">
+    <div class="container py-5">
+        <h2 class="orders-title animate-fade-in">My Orders</h2>
+
+        @if (!Model.Any())
+        {
+            <div class="no-orders-alert animate-fade-in">
+                You have no orders yet.
             </div>
-            <div class="card-body">
-                <p>Total: @order.TotalPrice EGP</p>
-                <p>Order Time: @order.OrderTime.ToLocalTime().ToString("dd MMM yyyy - HH:mm")</p>
-                <table class="table table-sm mt-2">
-                    <thead>
-                        <tr>
-                            <th>Recipe</th>
-                            <th>Qty</th>
-                            <th>Price</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in order.Details)
-                        {
-                            <tr>
-                                <td>@item.RecipeTitle</td>
-                                <td>@item.Quantity</td>
-                                <td>@item.Price EGP</td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
-            @if (order.Status == Beyti.Models.OrderStatus.Pending)
+        }
+        else
+        {
+            @foreach (var order in Model)
             {
-                <div class="card-footer text-end">
-                    <form asp-action="Cancel" method="post">
-                        <input type="hidden" name="id" value="@order.Id" />
-                        <button class="btn btn-danger btn-sm">Cancel Order</button>
-                    </form>
+                <div class="order-card animate-fade-in">
+                    <div class="card-header">
+                        <span>Order #@order.Id - @order.ChefName</span>
+                        <span class="badge">@order.Status</span>
+                    </div>
+                    <div class="card-body">
+                        <p>Total: @order.TotalPrice EGP</p>
+                        <p>Order Time: @order.OrderTime.ToLocalTime().ToString("dd MMM yyyy - HH:mm")</p>
+                        <table class="table order-details-table">
+                            <thead>
+                                <tr>
+                                    <th>Recipe</th>
+                                    <th>Qty</th>
+                                    <th>Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in order.Details)
+                                {
+                                    <tr>
+                                        <td>@item.RecipeTitle</td>
+                                        <td>@item.Quantity</td>
+                                        <td>@item.Price EGP</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    @if (order.Status == Beyti.Models.OrderStatus.Pending)
+                    {
+                        <div class="card-footer text-end">
+                            <form asp-action="Cancel" method="post">
+                                <input type="hidden" name="id" value="@order.Id" />
+                                <button class="cancel-order-btn">Cancel Order</button>
+                            </form>
+                        </div>
+                    }
                 </div>
             }
-        </div>
-    }
-}
+        }
+    </div>
+</div>

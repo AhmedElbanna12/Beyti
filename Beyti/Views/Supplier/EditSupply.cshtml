@@ -3,31 +3,45 @@
     ViewData["Title"] = "Edit Supply";
 }
 
-<link rel="stylesheet" href="~/css/edit-supply.css" />
+@section Styles {
+    <link rel="stylesheet" href="~/css/theme.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/edit-supply.css" asp-append-version="true" />
+}
 
-<h2>Edit Supply</h2>
+<div class="main-content">
+    <div class="container py-5">
+        <h2 class="edit-supply-title animate-fade-in">Edit Supply</h2>
 
-<form asp-action="EditSupply" method="post">
-    <input type="hidden" asp-for="Id" />
-    <div class="mb-3">
-        <label asp-for="Name" class="form-label"></label>
-        <input asp-for="Name" class="form-control" />
-        <span asp-validation-for="Name" class="text-danger"></span>
-    </div>
-    <div class="mb-3">
-        <label asp-for="Category" class="form-label"></label>
-        <input asp-for="Category" class="form-control" />
-        <span asp-validation-for="Category" class="text-danger"></span>
-    </div>
-    <div class="mb-3">
-        <label asp-for="QualityLevel" class="form-label"></label>
-        <input asp-for="QualityLevel" class="form-control" />
-        <span asp-validation-for="QualityLevel" class="text-danger"></span>
-    </div>
+        <div class="edit-form-card animate-fade-in">
+            <form asp-action="EditSupply" method="post">
+                <input type="hidden" asp-for="Id" />
 
-    <button type="submit" class="btn btn-primary">Save Changes</button>
-    <a asp-action="Dashboard" class="btn btn-secondary ms-2">Cancel</a>
-</form>
+                <div class="edit-form-group">
+                    <label asp-for="Name" class="edit-form-label">Supply Name</label>
+                    <input asp-for="Name" class="edit-form-control" placeholder="Enter supply name" />
+                    <span asp-validation-for="Name" class="edit-form-validation"></span>
+                </div>
+
+                <div class="edit-form-group">
+                    <label asp-for="Category" class="edit-form-label">Category</label>
+                    <input asp-for="Category" class="edit-form-control" placeholder="Enter category" />
+                    <span asp-validation-for="Category" class="edit-form-validation"></span>
+                </div>
+
+                <div class="edit-form-group">
+                    <label asp-for="QualityLevel" class="edit-form-label">Quality Level</label>
+                    <input asp-for="QualityLevel" class="edit-form-control" placeholder="Enter quality level" />
+                    <span asp-validation-for="QualityLevel" class="edit-form-validation"></span>
+                </div>
+
+                <div class="edit-form-actions">
+                    <button type="submit" class="btn-save-changes">Save Changes</button>
+                    <a asp-action="Dashboard" class="btn-cancel-edit">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
