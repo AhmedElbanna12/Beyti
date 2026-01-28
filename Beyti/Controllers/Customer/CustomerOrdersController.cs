@@ -43,7 +43,8 @@ namespace Beyti.Controllers.Customer
                 .Include(cp => cp.User)
                 .FirstOrDefaultAsync(cp => cp.UserId == chefId);
 
-            if (chefProfile == null) return NotFound();
+            if (chefProfile == null)
+                return NotFound();
 
             var vm = chefProfile.Recipes.Select(r => new CustomerRecipeVM
             {
@@ -51,6 +52,8 @@ namespace Beyti.Controllers.Customer
                 Title = r.Title,
                 Category = r.Category,
                 Description = r.Description,
+                Ingredients = r.Ingredients,          // ✅ أهو
+                PreparationTime = r.PreparationTime,  // ✅ وأهو
                 Price = r.Price,
                 ImagePath = r.Image
             }).ToList();
@@ -60,6 +63,7 @@ namespace Beyti.Controllers.Customer
 
             return View(vm);
         }
+
 
         // POST: Place order
         [HttpPost]

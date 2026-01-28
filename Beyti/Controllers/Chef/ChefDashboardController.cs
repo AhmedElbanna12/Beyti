@@ -98,8 +98,6 @@ namespace Beyti.Controllers.Chef
     ? $"{sc.SupplierProfile.User.Address.City}, {sc.SupplierProfile.User.Address.Street}"
     : "No address provided",
         PhoneNumber = sc.SupplierProfile.User.PhoneNumber ?? "N/A",
-
-        Image = "/images/supplier-default.jpg"
     })
     .ToListAsync();
 
@@ -326,22 +324,32 @@ namespace Beyti.Controllers.Chef
             return RedirectToAction("Index");
         }
 
-        // GET: Available Suppliers
         public async Task<IActionResult> AvailableSuppliers()
         {
             var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+
             var profile = await _context.ChefProfiles
-                .Include(cp => cp.SupplierChefs)
-                .ThenInclude(sc => sc.SupplierProfile)
                 .FirstOrDefaultAsync(cp => cp.UserId == userId);
 
-            if (profile == null) return NotFound();
+            if (profile == null)
+                return NotFound();
 
-            var allSuppliers = await _context.SupplierProfiles
-                .Include(sp => sp.User)
-                .ToListAsync();
+            var suppliers = await _context.SupplierProfiles
+     .Include(sp => sp.User)
+     .Include(sp => sp.Supplies)
+     .Select(sp => new SupplyVM
+     {
+         SupplierName = sp.CompanyName,
+         Category = sp.SupplyCategory,
+         // مثال: لو عايز تاخد أول Supply وتظهر QualityLevel
+         QualityLevel = sp.Supplies.FirstOrDefault() != null ? sp.Supplies.FirstOrDefault()!.QualityLevel : "Unknown",
+         Address = sp.User.Address.Street + ", " + sp.User.Address.City , 
+         PhoneNumber = sp.User.PhoneNumber
+     })
+     .ToListAsync();
 
-            return View(allSuppliers);
+
+            return View(suppliers);
         }
 
         // POST: Assign Supplier

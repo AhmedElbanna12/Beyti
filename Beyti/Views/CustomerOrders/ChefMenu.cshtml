@@ -23,23 +23,46 @@
                             {
                                 <img src="@Model[i].ImagePath" class="card-img-top" alt="@Model[i].Title" />
                             }
+
                             <div class="card-body">
                                 <h5>@Model[i].Title</h5>
-                                <p>@Model[i].Description</p>
+
+                                <p class="desc">
+                                    @Model[i].Description
+                                </p>
+
+                                <p class="prep-time">
+                                    ⏱ Preparation Time: @Model[i].PreparationTime min
+                                </p>
+
+                                <details class="ingredients">
+                                    <summary>View Ingredients</summary>
+                                    <p>
+                                        @Html.Raw(Model[i].Ingredients.Replace("\n", "<br />"))
+                                    </p>
+                                </details>
+
                                 <p class="price">@Model[i].Price EGP</p>
+
                                 <input type="number"
                                        name="Items[@i].Quantity"
                                        min="0"
                                        value="0"
                                        class="form-control"
                                        placeholder="Quantity" />
-                                <input type="hidden" name="Items[@i].RecipeId" value="@Model[i].Id" />
+
+                                <input type="hidden"
+                                       name="Items[@i].RecipeId"
+                                       value="@Model[i].Id" />
                             </div>
                         </div>
                     </div>
                 }
             </div>
-            <button type="submit" class="order-submit-btn">Place Order</button>
+
+            <button type="submit" class="order-submit-btn">
+                Place Order
+            </button>
         </form>
     </div>
 </div>

@@ -166,28 +166,28 @@ namespace Beyti.Controllers.Supplier
             return View(allChefs);
         }
 
-        //// POST: Assign Chef
-        //[HttpPost]
-        //public async Task<IActionResult> AssignChef(int chefId)
-        //{
-        //    var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
-        //    var profile = await _context.SupplierProfiles
-        //        .FirstOrDefaultAsync(sp => sp.UserId == userId);
+        // POST: Assign Chef
+        [HttpPost]
+        public async Task<IActionResult> AssignChef(int chefId)
+        {
+            var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+            var profile = await _context.SupplierProfiles
+                .FirstOrDefaultAsync(sp => sp.UserId == userId);
 
-        //    if (profile == null) return NotFound();
+            if (profile == null) return NotFound();
 
-        //    if (!_context.SupplierChefs.Any(sc => sc.SupplierProfileId == profile.Id && sc.ChefProfileId == chefId))
-        //    {
-        //        _context.SupplierChefs.Add(new SupplierChef
-        //        {
-        //            SupplierProfileId = profile.Id,
-        //            ChefProfileId = chefId
-        //        });
-        //        await _context.SaveChangesAsync();
-        //    }
+            if (!_context.SupplierChefs.Any(sc => sc.SupplierProfileId == profile.Id && sc.ChefProfileId == chefId))
+            {
+                _context.SupplierChefs.Add(new SupplierChef
+                {
+                    SupplierProfileId = profile.Id,
+                    ChefProfileId = chefId
+                });
+                await _context.SaveChangesAsync();
+            }
 
-        //    return RedirectToAction(nameof(Dashboard));
-        //}
+            return RedirectToAction(nameof(Dashboard));
+        }
 
     }
 }

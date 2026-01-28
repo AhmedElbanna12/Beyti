@@ -1,11 +1,6 @@
-﻿@model IEnumerable<Beyti.Models.SupplierProfile>
+﻿@model IEnumerable<Beyti.ViewModel.chief.SupplyVM>
 @{
     ViewData["Title"] = "Available Suppliers";
-}
-
-@section Styles {
-    <link rel="stylesheet" href="~/css/theme.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/chef-suppliers.css" asp-append-version="true" />
 }
 
 <div class="container mt-4">
@@ -31,16 +26,16 @@
                     {
                         <tr>
                             <td data-label="Company" class="supplier-company">
-                                🏢 @supplier.CompanyName
+                                🏢 @supplier.SupplierName
                             </td>
                             <td data-label="Category">
-                                <span class="supplier-category">@supplier.SupplyCategory</span>
+                                <span class="supplier-category">@supplier.Category</span>
                             </td>
                             <td data-label="Address" class="supplier-contact">
-                                <i class="bi bi-geo-alt"></i> @supplier.User.Address
+                                <i class="bi bi-geo-alt"></i> @supplier.Address
                             </td>
                             <td data-label="Phone" class="supplier-contact">
-                                <i class="bi bi-telephone"></i> @supplier.User.PhoneNumber
+                                <i class="bi bi-telephone"></i> @supplier.PhoneNumber
                             </td>
                         </tr>
                     }
@@ -59,7 +54,7 @@
         </div>
     }
 
-    <a asp-action="Dashboard" class="btn-back">
+    <a asp-action="Dashboard" class="back-to-dashboard-btn">
         ← Back to Dashboard
     </a>
 </div>
